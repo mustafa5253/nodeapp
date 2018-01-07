@@ -1,0 +1,16 @@
+module.exports = {
+  user    				      : require('./users/user.service'),
+  branch    			      : require('./branch/branch.service'),
+  company    			      : require('./company/company.service'),
+  seeder 				        : require('./seeders/seeder.service'),
+  plansSeeder  			    : require('./seeders/plan-seeder.service'),
+  rolesSeeder 			    : require('./seeders/role-seeder.service'),
+  superAdminOfAppSeeder : require('./seeders/super-admin-seeder.service'),
+  dashboard 			      : require('./dashboard/dashboard.service'),
+  navigation 			      : require('./navigation/navigation.service'),
+  role                  : require('./role/role.service'),
+  services 					    : require('./services/services.service'),
+  plan 					        : require('./plan/plan.service'),
+  task 					        : require('./task/task.service'),
+  document 					    : require('./document/document.service'),
+};
