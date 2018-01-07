@@ -4,6 +4,6 @@ production:
   - apt-get update -qy
   - apt-get install -y ruby-dev
   - gem install dpl
-  - dpl --provider=heroku --app=angular5-app --api-key=$HEROKU_PRODUCTION_API_KEY
+  - dpl --provider=heroku --app=angular5-app --api-key='3feb7194-0106-4608-8a1c-9ec51ebcfa93'
   only:
   - tags
