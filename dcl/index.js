@@ -7,6 +7,35 @@ function isIdValid(id, cb) {
 
 module.exports = {
 
+    getPaginatedList: (modelName, page, count, callbackFn) => {
+
+        page = page ? Number(page) : 1;
+        count = count ? Number(count) : 10;
+
+        let response = {};
+        models[modelName].paginate({}, { page: page, limit: count })
+            .then(results => {
+                /**
+                 * Response looks like:
+                 * {
+                 *   docs: [...] // array of Posts
+                 *   total: 42   // the total number of Posts
+                 *   limit: 10   // the number of Posts returned per page
+                 *   page: 2     // the current page of Posts returned
+                 *   pages: 5    // the total number of pages
+                 * }
+                */
+                response.status = 'success';
+                response.data = results;
+                callbackFn(response);
+            })
+            .catch((err) => {
+                response.status = 'error';
+                response.data = err;
+                callbackFn(response);
+            });
+    },
+
     getAll: (modelName, callbackFn) => {
 
         let response = {};

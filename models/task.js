@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+const mongoosePaginate = require('mongoose-paginate');
 
 var TaskSchema =new Schema({
 	title: { type: String, trim: true, required: true },
@@ -18,4 +19,6 @@ var TaskSchema =new Schema({
 	updated_at: { type: Date, time: true },
 });
 
+
+TaskSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('Task', TaskSchema);

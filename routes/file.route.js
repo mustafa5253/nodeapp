@@ -20,7 +20,12 @@ router.get('/:id', function (req, res) {
     // Validate that req.params.id is 16 bytes hex string
     // Get the stored image type for this image
     res.setHeader('Content-Type', 'image/jpeg');
-    fs.createReadStream(path.join('uploads', req.params.id)).pipe(res);
+    if (fs.existsSync(path.join('uploads', req.params.id))) {
+        // Do something
+        fs.createReadStream(path.join('uploads', req.params.id)).pipe(res);
+    } else {
+        res.send('https://thumb1.shutterstock.com/display_pic_with_logo/631318/586791809/stock-photo-not-available-red-rubber-stamp-over-a-white-background-586791809.jpg');
+    }
 });
 
 /*

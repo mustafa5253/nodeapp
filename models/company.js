@@ -21,7 +21,6 @@ var CompanySchema = new Schema({
 		code: String,
 		name: String
 	},
-	plan_id: String,
 	subscription: { 
 		start_date:{ type: Date, time: true, default: Date.now },
 		end_date:{ type: Date, time: true },

@@ -43,11 +43,6 @@ module.exports = {
       },
       "additionalProperties": false
     },
-    "plan_id": {
-      "type": "string",
-      "minLength": 24,
-      "maxLength": 24
-    },
     "subscription": {
       "type": "object",
       "properties": {

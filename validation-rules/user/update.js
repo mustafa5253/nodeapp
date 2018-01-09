@@ -122,6 +122,11 @@ module.exports = {
       "minLength": 8
     },
     "user_type": { "enum": ["admin","employee","customer"] },
+    "plan_id": {
+      "type": "string",
+      "minLength": 24,
+      "maxLength": 24
+    },
     "company_id": { "type": "string" },
     "branch_id": {
       "type": "string",

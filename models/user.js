@@ -27,6 +27,7 @@ var userSchema = new Schema({
 	company_id: String,
 	branch_id: String,
 	user_type: String,
+	plan_id: String,
 	roles: Array,
 	is_verified: {
 		mobile: Boolean,
