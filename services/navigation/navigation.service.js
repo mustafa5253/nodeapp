@@ -11,12 +11,12 @@ const superAdminNavigationData = [
         'icon': 'dashboard',
         'url': '/dashboard',
     },
-    {
-        'title': 'Companies',
-        'type': 'item',
-        'icon': 'star',
-        'url': '/companies',
-    },
+    // {
+    //     'title': 'Companies',
+    //     'type': 'item',
+    //     'icon': 'star',
+    //     'url': '/companies',
+    // },
     {
         'title': 'Admins',
         'type': 'item',
@@ -24,7 +24,7 @@ const superAdminNavigationData = [
         'url': '/admins',
     },
     {
-        'title': 'Plans',
+        'title': 'Plans for Admin',
         'type': 'item',
         'icon': 'star',
         'url': '/plans',
@@ -108,8 +108,6 @@ module.exports = {
         let response = {};
 
         if (req.user && req.user.user_type) {
-
-            console.log('req.user.user_type is :', req.user.user_type);
 
             response.status = 'success';
 

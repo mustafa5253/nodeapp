@@ -23,8 +23,18 @@ module.exports = {
 				res.send(response);
 			}
 		}
+
+		if(req.user_type){
+			console.log('req.user_type is :', req.user_type);
+			const condition = { 'user_type': req.user_type };
+			dcl.getAllWhere('User', condition, cb);			
+		} else {
+			res.send({
+				status: 'error',
+				data: 'User type not found in request.'
+			});
+		}
        
-        dcl.getAll('User', cb);
     },
 
     /**

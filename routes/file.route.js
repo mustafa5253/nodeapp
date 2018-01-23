@@ -24,7 +24,7 @@ router.get('/:id', function (req, res) {
         // Do something
         fs.createReadStream(path.join('uploads', req.params.id)).pipe(res);
     } else {
-        res.send('https://thumb1.shutterstock.com/display_pic_with_logo/631318/586791809/stock-photo-not-available-red-rubber-stamp-over-a-white-background-586791809.jpg');
+        fs.createReadStream(path.join('api-assets', 'e6b65b74e544696704044b42e859953e')).pipe(res);
     }
 });
 

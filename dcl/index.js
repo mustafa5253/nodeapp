@@ -53,6 +53,25 @@ module.exports = {
         });
     },
 
+    getAllWhere: (modelName, conditionObj,callbackFn) => {
+
+        let response = {};
+
+        console.log('conditionObj is :', conditionObj);
+
+        models[modelName].find(conditionObj).sort('-_id').find({}, (err, rows) => {
+            if (err) {
+                response.status = 'error';
+                response.data = err;
+            } else {
+                response.status = 'success';
+                response.data = rows;
+            }
+
+            callbackFn(response);
+        });
+    },
+
     getById: (id, modelName, callbackFn) => {
 
         let response = {};

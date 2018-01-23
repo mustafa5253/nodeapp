@@ -5,7 +5,12 @@ var services = require('../services');
 /*
  * GET ALL
  */
-router.get('/all', services.user.list);
+router.get('/all/:user_type', setUserTypeInReq, services.user.list);
+
+function setUserTypeInReq(req, res, next) {
+    req.user_type = req.params.user_type ? req.params.user_type : null;   
+    next();
+}
 
 /*
  * GET
