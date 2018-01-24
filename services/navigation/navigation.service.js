@@ -55,7 +55,13 @@ const adminNavigationData = [
         'type': 'item',
         'icon': 'star',
         'url': '/services',
-    }
+    },
+    {
+        'title': 'Plans for Customer',
+        'type': 'item',
+        'icon': 'star',
+        'url': '/plans',
+    },
 ];
 
 
