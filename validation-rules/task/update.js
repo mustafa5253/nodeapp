@@ -45,6 +45,17 @@ module.exports = {
           "name": { "type": "string" }
       }
     },
+    "checklists": {
+      "type": "array"
+    },
+    "activities": {
+      "type": "array"
+    },
+    "service": {
+      "type": "string",
+      "minLength": 24,
+      "maxLength": 24
+    },
     "comments": {
       "type": "array",
       "items": {
