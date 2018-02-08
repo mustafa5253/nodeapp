@@ -30,7 +30,7 @@ var TaskSchema = new Schema({
 	checkItems: Number,
 	checkItemsChecked: Number,
 	service: String,
-	comments: [{ message: String, user_id: String, time: { type: String } }],
+	comments: [{ message: String, user_name: String, time: { type: String } }],
 	created_by: String,
 	created_at: { type: Date, time: true },
 	updated_at: { type: Date, time: true },
