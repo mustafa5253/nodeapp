@@ -6,6 +6,7 @@
 
 var dcl = require('../../dcl');
 var validationEngine = require('../../validation-engine');
+var fs = require('fs');
 
 module.exports = {
 
@@ -56,8 +57,6 @@ module.exports = {
 		// Combine two objects
 		let data = Object.assign(req.body, req.file);
 
-		console.log("Hello Arpit the combine data is :", data);
-
 		validationEngine(data, 'document', 'create', (isPassed, validationResult) => {
 			if (isPassed) {
 				let cb = (output) => {
@@ -68,6 +67,12 @@ module.exports = {
 						// do something with error
 						res.send(output);
 					}
+				}
+
+				if(data.attachments && data.attachments.length) {
+					data.attachments = data.attachments.map(function(item) {
+						return item['id'];
+					});
 				}
 
 				dcl.create(data, 'Document', cb);
@@ -102,8 +107,10 @@ module.exports = {
 					}
 				}
 
-				if (!data.password) {
-					data.password = '12345';
+				if(data.attachments && data.attachments.length) {
+					data.attachments = data.attachments.map(function(item) {
+						return item['id'];
+					});
 				}
 
 				dcl.update(id, data, 'Document', cb);
@@ -124,9 +131,11 @@ module.exports = {
 
 		var cb = (response) => {
 			if (response.status === 'success') {
+				fs.unlink(response.data.path, (err) => {
+					res.send(response);
+				})
 				// do something with data
-				res.send(response);
-			} else {
+			} else {			
 				// do something with error
 				res.send(response);
 			}

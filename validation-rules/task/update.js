@@ -11,10 +11,7 @@ module.exports = {
     },
     "priority": {
       "type": "string"
-    },
-    "is_active": {
-      "type": "boolean"
-    },  
+    }, 
     "description": {
       "type": "string"
     },
@@ -40,16 +37,29 @@ module.exports = {
     },
     "attachments": {
       "type": "array",
-      "items": {
-          "url": { "type": "string" },
-          "name": { "type": "string" }
-      }
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "uuid": { "type": "string" },
+            "name": { "type": "string" },
+            "path": { "type": "string" },
+            "id": { "type": "string" }
+          }
+        }
+      ]
     },
     "checklists": {
       "type": "array"
     },
     "activities": {
       "type": "array"
+    },
+    "checkItems": {
+      "type": "number"
+    },
+    "checkItemsChecked": {
+      "type": "number"
     },
     "service": {
       "type": "string",

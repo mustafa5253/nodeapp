@@ -73,6 +73,7 @@ module.exports = {
 						res.send(output);
 					}
 				}
+				
 				dcl.create(data, 'Task', cb);
 
 			} else {
@@ -104,7 +105,7 @@ module.exports = {
 						res.send(output);
 					}
 				}
-
+				console.log('the data before save : ', data);
 				dcl.update(id, data, 'Task', cb);
 
 			} else {

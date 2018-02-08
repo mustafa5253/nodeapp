@@ -7,9 +7,6 @@ module.exports = {
     "priority": {
       "type": "string"
     },
-    "is_active": {
-      "type": "boolean"
-    },
     "description": {
       "type": "string"
     },
@@ -35,16 +32,29 @@ module.exports = {
     },
     "attachments": {
       "type": "array",
-      "items": {
-          "url": { "type": "string" },
-          "name": { "type": "string" }
-      }
+      "items": [
+        {
+          "type": "object",
+          "items": {
+            "uuid": { "type": "string" },
+            "name": { "type": "string" },
+            "path": { "type": "string" },
+            "id": { "type": "string" }
+          }
+        }
+      ]
     },
     "checklists": {
       "type": "array"
     },
     "activities": {
       "type": "array"
+    },
+    "checkItems": {
+      "type": "number"
+    },
+    "checkItemsChecked": {
+      "type": "number"
     },
     "service": {
       "type": "string",
@@ -54,9 +64,9 @@ module.exports = {
     "comments": {
       "type": "array",
       "items": {
-          "message": { "type": "string" },
-          "user_id": { "type": "string" },
-          "time": { "type": "string" },
+        "message": { "type": "string" },
+        "user_id": { "type": "string" },
+        "time": { "type": "string" },
       }
     },
     "status": {
@@ -67,8 +77,8 @@ module.exports = {
       "minLength": 24,
       "maxLength": 24
     },
-    "created_at": { "type": "string"},
-    "updated_at":  { "type": "string"}
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" }
   },
   "additionalProperties": false
 };
