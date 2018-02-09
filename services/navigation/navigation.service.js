@@ -77,6 +77,12 @@ const employeeNavigationData = [
         'type': 'item',
         'icon': 'star',
         'url': '/customers',
+    },
+    {
+        'title': 'To do',
+        'type': 'item',
+        'icon': 'star',
+        'url': '/todo',
     }
 ];
 
@@ -105,7 +111,7 @@ const customerNavigationData = [
         'type': 'item',
         'icon': 'star',
         'url': '/todo',
-    },
+    }
 ];
 
 var dcl = require('../../dcl');
