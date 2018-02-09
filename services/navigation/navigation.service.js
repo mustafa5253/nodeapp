@@ -99,7 +99,13 @@ const customerNavigationData = [
         'type': 'item',
         'icon': 'star',
         'url': '/documents',
-    }
+    },
+    {
+        'title': 'To do',
+        'type': 'item',
+        'icon': 'star',
+        'url': '/todo',
+    },
 ];
 
 var dcl = require('../../dcl');
