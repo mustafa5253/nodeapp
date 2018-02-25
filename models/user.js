@@ -25,6 +25,7 @@ var userSchema = new Schema({
 	},
 	group_id: String,
 	company_id: String,
+	company_name: String,
 	branch_id: String,
 	user_type: String,
 	plan_id: String,
