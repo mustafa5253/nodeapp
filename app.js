@@ -52,10 +52,10 @@ app.use(session({
   saveUninitialized: false,
   name: 'Session-Id',
   cookie: {
-    secure: false,
-    httpOnly: true,
-    // maxAge: 60000, // 1 minute
-    sameSite: true
+    // secure: false,
+    // httpOnly: true,
+    // // maxAge: 60000, // 1 minute
+    // sameSite: true
   }
 }));
 

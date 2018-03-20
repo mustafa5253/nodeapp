@@ -14,7 +14,7 @@ module.exports = {
     },
     "password": {
       "type": "string",
-      "minLength": 8
+      "minLength": 5
     },
     "user_type": { "enum": ["admin","employee","customer"] },
     "plan_id": {
@@ -38,8 +38,8 @@ module.exports = {
       "maxLength": 24
     },
     "active_status": { "type": "string" },
-    "created_at": { "type": "string" },
-    "updated_at":  { "type": "string" }
+    "created_at": { "type": ["null", "string"] },
+    "updated_at":  { "type": ["null", "string"] }
   },
   "additionalProperties": false
 };

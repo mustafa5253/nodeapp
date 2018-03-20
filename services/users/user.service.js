@@ -123,14 +123,14 @@ module.exports = {
 				}
 
 				if(!data.password){
-					data.password = '12345';
+					data.password = req.user.password;
 				}
 
 				dcl.update(id, data, 'User', cb);
         		
         	} else {
         		response.status = 'validationFailed';
-        		response.errors = validationResult.errors;
+				response.errors = validationResult.errors;
 		   		res.status(400).json(response);
         	}
         });

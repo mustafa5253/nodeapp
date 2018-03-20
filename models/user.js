@@ -39,10 +39,11 @@ var userSchema = new Schema({
 		name: String
 	},
 	created_by: String,
-	active_status: String,
-	created_at: { type: Date, time: true },
-	updated_at: { type: Date, time: true }
-});
+	active_status: String
+},{
+	timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
+}
+);
 
 
 module.exports = mongoose.model('User', userSchema);
