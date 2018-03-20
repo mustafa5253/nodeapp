@@ -88,6 +88,7 @@ var service = require('./routes/services.route');
 var plan = require('./routes/plan.route');
 var task = require('./routes/task.route');
 var file = require('./routes/file.route');
+var notification = require('./routes/notification.route');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -126,6 +127,7 @@ app.use('/api/service', service);
 app.use('/api/plan', plan);
 app.use('/api/task', task);
 app.use('/api/file', file);
+app.use('/api/notification', notification);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

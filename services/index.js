@@ -13,4 +13,5 @@ module.exports = {
   plan 					        : require('./plan/plan.service'),
   task 					        : require('./task/task.service'),
   document 					    : require('./document/document.service'),
+  notification 					: require('./notification/notification.service'),
 };

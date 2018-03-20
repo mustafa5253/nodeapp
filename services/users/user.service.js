@@ -101,7 +101,7 @@ module.exports = {
     },
 
     /**
-     * carController.update()
+     * update
      */
     update: (req, res) => {
 
@@ -125,8 +125,8 @@ module.exports = {
 				if(!data.password){
 					data.password = '12345';
 				}
-       
-        		dcl.update(id, data, 'User', cb);
+
+				dcl.update(id, data, 'User', cb);
         		
         	} else {
         		response.status = 'validationFailed';

@@ -85,7 +85,7 @@ module.exports = {
 	},
 
     /**
-     * carController.update()
+     * update
      */
 	update: (req, res) => {
 

@@ -21,6 +21,13 @@ module.exports = {
       "type": "string",
       "minLength": 8
     },
+    "confirm_password": {
+      "const": {
+        "$data": "1/password"
+      },
+      "type": "string",
+      "minLength": 8
+    },
     "user_type": { "enum": ["admin","employee","customer"] },
     "plan_id": {
       "type": "string",
