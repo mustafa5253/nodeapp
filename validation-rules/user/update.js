@@ -21,7 +21,7 @@ module.exports = {
       "type": "string",
       "minLength": 5
     },
-    "confirm_password": {
+    "new_password": {
       "const": {
         "$data": "1/password"
       },
