@@ -29,6 +29,12 @@ const superAdminNavigationData = [
         'icon': 'star',
         'url': '/plans',
     },
+    {
+        'title': 'Pricing',
+        'type': 'item',
+        'icon': 'star',
+        'url': '/plans/pricing',
+    }
 ];
 
 const adminNavigationData = [
@@ -62,6 +68,12 @@ const adminNavigationData = [
         'icon': 'star',
         'url': '/plans',
     },
+    {
+        'title': 'Pricing',
+        'type': 'item',
+        'icon': 'star',
+        'url': '/plans/pricing',
+    }
 ];
 
 
@@ -83,6 +95,12 @@ const employeeNavigationData = [
         'type': 'item',
         'icon': 'star',
         'url': '/todo',
+    },
+    {
+        'title': 'Pricing',
+        'type': 'item',
+        'icon': 'star',
+        'url': '/plans/pricing',
     }
 ];
 
@@ -111,6 +129,12 @@ const customerNavigationData = [
         'type': 'item',
         'icon': 'star',
         'url': '/todo',
+    },
+    {
+        'title': 'Pricing',
+        'type': 'item',
+        'icon': 'star',
+        'url': '/plans/pricing',
     }
 ];
 
