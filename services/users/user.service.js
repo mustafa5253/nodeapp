@@ -122,12 +122,22 @@ module.exports = {
 					}
 				}
 
-				if(!data.password){
-					data.password = req.user.password;
+				if(data.new_password) {
+					if(data.password === req.user.password) {
+						data.password = data.new_password;
+						dcl.update(id, data, 'User', cb);
+					} else {
+						response.status = 'validationFailed';
+						response.errors = 'Current password not matched.';
+						res.status(400).json(response);
+					}
+				} else {
+					if(!data.password){
+						data.password = req.user.password;
+					}
+					dcl.update(id, data, 'User', cb);					
 				}
 
-				dcl.update(id, data, 'User', cb);
-        		
         	} else {
         		response.status = 'validationFailed';
 				response.errors = validationResult.errors;

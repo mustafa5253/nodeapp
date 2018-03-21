@@ -22,9 +22,6 @@ module.exports = {
       "minLength": 5
     },
     "new_password": {
-      "const": {
-        "$data": "1/password"
-      },
       "type": "string",
       "minLength": 5
     },
