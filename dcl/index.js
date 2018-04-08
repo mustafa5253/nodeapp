@@ -7,13 +7,10 @@ function isIdValid(id, cb) {
 
 module.exports = {
 
-    getPaginatedList: (modelName, page, count, callbackFn) => {
-
-        page = page ? Number(page) : 1;
-        count = count ? Number(count) : 10;
+    getPaginatedList: (modelName, condition, page, count, callbackFn) => {
 
         let response = {};
-        models[modelName].paginate({}, { page: page, limit: count })
+        models[modelName].paginate(condition, { page: page, limit: count })
             .then(results => {
                 /**
                  * Response looks like:
@@ -56,8 +53,6 @@ module.exports = {
     getAllWhere: (modelName, conditionObj,callbackFn) => {
 
         let response = {};
-
-        console.log('conditionObj is :', conditionObj);
 
         models[modelName].find(conditionObj).sort('-_id').find({}, (err, rows) => {
             if (err) {
@@ -141,45 +136,6 @@ module.exports = {
             }
             cb(response);
         });
-
-        // isIdValid(id, (isValid) => {
-        //     if(isValid){
-        //         models[model].findOne({_id: id}, (err, row) => {
-        //             if(err) {
-        //                 response.status = 'error';
-        //                 response.data = err;
-        //                 cb(response);
-        //             } else if(!row) {
-        //                 response.status = 'error';
-        //                 response.message = 'NOT_FOUND';
-        //                 response.data = null;
-        //                 cb(response);
-        //             } else {
-
-        //                 let query = { _id: id };
-        //                 let options = { multi: false };
-
-        //                 models[model].update(query, data, options, (updationErr, uodatedRow) => {
-        //                     if(updationErr) {
-        //                         response.status = 'error';
-        //                         response.data = updationErr;
-        //                     } 
-        //                     else {
-        //                         response.status = 'success';
-        //                         response.data = uodatedRow;
-        //                     }
-
-        //                     cb(response);
-        //                 });
-        //             }
-        //         });
-        //     } else {
-        //         response.status = 'error';
-        //         response.data = 'Provided id is not valid';
-        //         cb(response);
-        //     }
-
-        // });
     },
 
     delete: (id, model, cb) => {

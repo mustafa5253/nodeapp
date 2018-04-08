@@ -25,7 +25,9 @@ module.exports = {
 			}
 		}
 
-		dcl.getAll('Document', cb);
+		const condition = {};
+		// dcl.getAll('Document', cb);
+		dcl.getPaginatedList('Document', condition, req.page, req.count, cb);
 	},
 
     /**

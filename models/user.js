@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var mongoosePaginate = require('mongoose-paginate');
 
 var userSchema = new Schema({
 	first_name: { type: String, trim: true },
@@ -45,5 +46,5 @@ var userSchema = new Schema({
 }
 );
 
-
+userSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('User', userSchema);

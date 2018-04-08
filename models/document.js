@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var mongoosePaginate = require('mongoose-paginate');
 
 var DocumentSchema = new Schema({
     document_name: { type: String, required: true },
@@ -17,4 +18,5 @@ var DocumentSchema = new Schema({
 	updated_at: { type: Date, time: true },
 });
 
+DocumentSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('Document', DocumentSchema);

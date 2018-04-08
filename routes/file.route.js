@@ -12,7 +12,15 @@ let magic = new Magic(mmm.MAGIC_MIME_TYPE);
 /*
  * GET ALL
  */
-router.get('/all', services.document.list);
+router.get('/all', setQueryParamsInReq, services.document.list);
+
+function setQueryParamsInReq(req, res, next) {
+
+    req.page = req.query.page ? parseInt(req.query.page) : 1;
+    req.count = req.query.count ? parseInt(req.query.count) : 10;
+       
+    next();
+}
 
 /*
  * GET

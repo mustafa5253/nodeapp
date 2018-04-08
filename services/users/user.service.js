@@ -25,9 +25,8 @@ module.exports = {
 		}
 
 		if(req.user_type){
-			console.log('req.user_type is :', req.user_type);
 			const condition = { 'user_type': req.user_type };
-			dcl.getAllWhere('User', condition, cb);			
+			dcl.getPaginatedList('User', condition, req.page, req.count, cb);			
 		} else {
 			res.send({
 				status: 'error',
@@ -80,6 +79,7 @@ module.exports = {
 				data.password = '12345';
 
 				if(data.user_type === 'employee' || data.user_type == 'customer'){
+					console.log('req.user is --- :', req.user);
 					if(req.user && req.user.company_id){
 						data.company_id = req.user.company_id;
 						dcl.create(data, 'User', cb);

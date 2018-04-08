@@ -8,6 +8,10 @@ var services = require('../services');
 router.get('/all/:user_type', setUserTypeInReq, services.user.list);
 
 function setUserTypeInReq(req, res, next) {
+
+    req.page = req.query.page ? parseInt(req.query.page) : 1;
+    req.count = req.query.count ? parseInt(req.query.count) : 10;
+
     req.user_type = req.params.user_type ? req.params.user_type : null;   
     next();
 }

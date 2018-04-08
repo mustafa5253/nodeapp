@@ -12,6 +12,8 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var session = require('express-session');
 var cors = require('cors');
+var compression = require('compression');
+const MongoStore = require('connect-mongo')(session);
 
 var databaseUrl = require('./config/database.js')[process.env.NODE_ENV || 'development'];
 // configuration 
@@ -19,6 +21,19 @@ mongoose.connect(databaseUrl, { useMongoClient: true}); // connect to our databa
 
 var app = express();
 
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Authorization');
+  if ('OPTIONS' == req.method) {
+    res.send(200);
+  } else {
+    next();
+  }
+});
+
+app.use(compression());
 app.use(helmet());
 
 // required for passport
@@ -48,14 +63,15 @@ app.use(cookieParser());
 
 app.use(session({
   secret: 'ilovescotchscotchyscotchscotch', // session secret
-  resave: true,
+  // store: new MongoStore({ url: 'mongodb://apmeena:12345@ds245357.mlab.com:45357/live-db'}),
+  resave: false,
   saveUninitialized: false,
   name: 'Session-Id',
   cookie: {
-    // secure: false,
-    // httpOnly: true,
-    // // maxAge: 60000, // 1 minute
-    // sameSite: true
+    secure: false,
+    httpOnly: true,
+    maxAge: 60000 * 30, // 30 minute
+    sameSite: false
   }
 }));
 
