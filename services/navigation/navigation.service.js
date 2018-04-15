@@ -11,12 +11,6 @@ const superAdminNavigationData = [
         'icon': 'dashboard',
         'url': '/dashboard',
     },
-    // {
-    //     'title': 'Companies',
-    //     'type': 'item',
-    //     'icon': 'star',
-    //     'url': '/companies',
-    // },
     {
         'title': 'Admins',
         'type': 'item',
@@ -28,12 +22,6 @@ const superAdminNavigationData = [
         'type': 'item',
         'icon': 'star',
         'url': '/plans',
-    },
-    {
-        'title': 'Pricing',
-        'type': 'item',
-        'icon': 'star',
-        'url': '/plans/pricing',
     }
 ];
 
@@ -67,12 +55,6 @@ const adminNavigationData = [
         'type': 'item',
         'icon': 'star',
         'url': '/plans',
-    },
-    {
-        'title': 'Pricing',
-        'type': 'item',
-        'icon': 'star',
-        'url': '/plans/pricing',
     }
 ];
 
@@ -95,12 +77,6 @@ const employeeNavigationData = [
         'type': 'item',
         'icon': 'star',
         'url': '/todo',
-    },
-    {
-        'title': 'Pricing',
-        'type': 'item',
-        'icon': 'star',
-        'url': '/plans/pricing',
     }
 ];
 
