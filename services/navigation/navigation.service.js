@@ -89,12 +89,6 @@ const customerNavigationData = [
         'url': '/dashboard',
     },
     {
-        'title': 'Task',
-        'type': 'item',
-        'icon': 'star',
-        'url': '/tasks',
-    },
-    {
         'title': 'Documents',
         'type': 'item',
         'icon': 'star',
