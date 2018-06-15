@@ -14,4 +14,5 @@ module.exports = {
   task 					        : require('./task/task.service'),
   document 					    : require('./document/document.service'),
   notification 					: require('./notification/notification.service'),
+  mail 					        : require('./mail/mail.service'),
 };

@@ -7,4 +7,5 @@ module.exports = {
   Task: require('./task'),
   Service: require('./services'),
   Document: require('./document'),
+  Mail: require('./mail'),
 };

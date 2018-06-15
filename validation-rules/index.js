@@ -22,5 +22,9 @@ module.exports = {
   document: {
   	create: require('./document/create'),
   	update: require('./document/update'),
+  },
+  mail: {
+  	create: require('./mail/create'),
+  	update: require('./mail/update'),
   }
 };

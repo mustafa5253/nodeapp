@@ -22,6 +22,24 @@ const superAdminNavigationData = [
         'type': 'item',
         'icon': 'star',
         'url': '/plans',
+    },
+    {
+        'title': 'Send Email',
+        'type': 'item',
+        'icon': 'star',
+        'url': '/email',
+    },
+    {
+        'title': 'Notification/SMS/Chat',
+        'type': 'item',
+        'icon': 'star',
+        'url': '/plans',
+    },
+    {
+        'title': 'Templates',
+        'type': 'item',
+        'icon': 'star',
+        'url': '/plans',
     }
 ];
 

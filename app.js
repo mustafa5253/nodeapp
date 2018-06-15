@@ -1,4 +1,5 @@
 var express = require('express');
+// var socket_io    = require("socket.io");
 var helmet = require('helmet');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -20,6 +21,14 @@ var databaseUrl = require('./config/database.js')[process.env.NODE_ENV || 'devel
 mongoose.connect(databaseUrl, { useMongoClient: true}); // connect to our database
 
 var app = express();
+
+// Socket.io
+// var io = socket_io();
+// app.io = io;
+// next line is the money
+// app.set('socketio', io);
+
+// var routes = require('./routes/socket.route')(io);
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Credentials', true);
@@ -105,6 +114,7 @@ var plan = require('./routes/plan.route');
 var task = require('./routes/task.route');
 var file = require('./routes/file.route');
 var notification = require('./routes/notification.route');
+var mail = require('./routes/mail.route');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -144,6 +154,7 @@ app.use('/api/plan', plan);
 app.use('/api/task', task);
 app.use('/api/file', file);
 app.use('/api/notification', notification);
+app.use('/api/mail', mail);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

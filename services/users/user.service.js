@@ -64,6 +64,9 @@ module.exports = {
         let response = {};
         let data = req.body;
 
+  		// var socketio = req.app.get('socketio');
+		// socketio.emit('newNotification', { message: 'A new user is created.' });
+
         validationEngine(data, 'user', 'create', (isPassed, validationResult) => {
         	if (isPassed) {
         		let cb = (output) => {

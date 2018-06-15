@@ -175,5 +175,34 @@ module.exports = {
                 cb(response);
             }
         });
+    },
+
+    countAll: (model, cb) => {
+        let response = {};
+        models[model].count({}, (err, c) => {
+            if(err) {
+                response.status = 'error';
+                response.data = err;
+                cb(response);
+            } else {
+                response.status = 'success';
+                response.data = c;
+                cb(response);
+            }
+       });
+    },
+    countAllWhere: (model, condition, cb) => {
+        let response = {};
+        models[model].count(condition, (err, c) => {
+            if(err) {
+                response.status = 'error';
+                response.data = err;
+                cb(response);
+            } else {
+                response.status = 'success';
+                response.data = c;
+                cb(response);
+            }
+       });
     }
 }
