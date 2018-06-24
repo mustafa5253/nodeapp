@@ -1,19 +1,19 @@
 /**
- * seeder.service.js
+ * servics.js
  *
- * @description :: Server-side logic for seeders.
+ * @description :: Server-side logic for managing services.
  */
 
 var dcl = require('../../dcl');
+var validationEngine = require('../../validation-engine');
 
-var seederData = require('./seeder.data');
 
 module.exports = {
 
     /**
-     * seedDocumentNames
+     * list
      */
-	seedDocumentNames: (req, res) => {
+	list: (req, res) => {
 
 		var cb = (response) => {
 			if (response.status === 'success') {
@@ -25,9 +25,7 @@ module.exports = {
 			}
 		}
 
-		var allDocuments = seederData.documentNames;
-
-		dcl.bulkCreate(allDocuments, 'DocumentNames', cb);
+		dcl.getAll('Chat', cb);
 	},
 
     /**
@@ -47,7 +45,7 @@ module.exports = {
 			}
 		}
 
-		dcl.getById(id, 'Document', cb);
+		dcl.getById(id, 'Chat', cb);
 	},
 
     /**
@@ -56,10 +54,9 @@ module.exports = {
 	create: (req, res) => {
 
 		let response = {};
-		// Combine two objects
-		let data = Object.assign(req.body, req.file);
+		let data = req.body;
 
-		validationEngine(data, 'document', 'create', (isPassed, validationResult) => {
+		validationEngine(data, 'Chat', 'create', (isPassed, validationResult) => {
 			if (isPassed) {
 				let cb = (output) => {
 					if (output.status === 'success') {
@@ -70,14 +67,8 @@ module.exports = {
 						res.send(output);
 					}
 				}
-
-				if(data.attachments && data.attachments.length) {
-					data.attachments = data.attachments.map(function(item) {
-						return item['id'];
-					});
-				}
-
-				dcl.create(data, 'Document', cb);
+				
+				dcl.create(data, 'Chat', cb);
 
 			} else {
 				response.status = 'validationFailed';
@@ -97,7 +88,7 @@ module.exports = {
 		let id = req.params.id;
 		let data = req.body;
 
-		validationEngine(data, 'document', 'update', (isPassed, validationResult) => {
+		validationEngine(data, 'Chat', 'update', (isPassed, validationResult) => {
 			if (isPassed) {
 				let cb = (output) => {
 					if (output.status === 'success') {
@@ -108,14 +99,8 @@ module.exports = {
 						res.send(output);
 					}
 				}
-
-				if(data.attachments && data.attachments.length) {
-					data.attachments = data.attachments.map(function(item) {
-						return item['id'];
-					});
-				}
-
-				dcl.update(id, data, 'Document', cb);
+				console.log('the data before save : ', data);
+				dcl.update(id, data, 'Chat', cb);
 
 			} else {
 				response.status = 'validationFailed';
@@ -133,16 +118,14 @@ module.exports = {
 
 		var cb = (response) => {
 			if (response.status === 'success') {
-				fs.unlink(response.data.path, (err) => {
-					res.send(response);
-				})
 				// do something with data
-			} else {			
+				res.send(response);
+			} else {
 				// do something with error
 				res.send(response);
 			}
 		}
 
-		dcl.delete(id, 'Document', cb);
+		dcl.delete(id, 'Chat', cb);
 	}
 };

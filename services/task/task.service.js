@@ -7,7 +7,6 @@
 var dcl = require('../../dcl');
 var validationEngine = require('../../validation-engine');
 
-
 module.exports = {
 
     /**
@@ -25,7 +24,10 @@ module.exports = {
 			}
 		}
 
-		dcl.getAll('Task', cb);
+		// dcl.getAll('Task', cb);
+		dcl.getPaginatedList('Task', {}, req.page, req.count, cb);
+		// dcl.getAllAndPopulate('Task', 'attachments services', cb);
+
 	},
 
     /**
@@ -45,7 +47,8 @@ module.exports = {
 			}
 		}
 
-		dcl.getById(id, 'Task', cb);
+		// dcl.getById(id, 'Task', cb);
+		dcl.getByIdAndPopulate(id, 'attachments services comments.user', 'Task', cb);
 	},
 
     /**
@@ -74,6 +77,8 @@ module.exports = {
 					}
 				}
 				
+				data.created_at = Date.now();
+				data.updated_at = Date.now();
 				dcl.create(data, 'Task', cb);
 
 			} else {
@@ -94,6 +99,12 @@ module.exports = {
 		let id = req.params.id;
 		let data = req.body;
 
+		if (req.user && req.user.company_id) {
+			data.company_id = req.user.company_id;
+		} else {
+			res.send({ status: 'error', data: 'You do not have any company.' });
+		}
+
 		validationEngine(data, 'task', 'update', (isPassed, validationResult) => {
 			if (isPassed) {
 				let cb = (output) => {
@@ -105,7 +116,7 @@ module.exports = {
 						res.send(output);
 					}
 				}
-				console.log('the data before save : ', data);
+
 				dcl.update(id, data, 'Task', cb);
 
 			} else {
@@ -114,6 +125,38 @@ module.exports = {
 				res.status(400).json(response);
 			}
 		});
+	},
+
+	/**
+     * update status of the task
+     */
+	updateStatus: (req, res) => {
+
+		let response = {};
+
+		let id = req.params.id;
+		let data = req.body;
+
+		if (req.user && req.user.company_id) {
+			// data.company_id = req.user.company_id;
+		} else {
+			return res.send({ status: 'error', data: 'You do not have any company.' });
+		}
+
+		let cb = (output) => {
+			if (output.status === 'success') {
+				// do something with data
+				res.send(output);
+			} else {
+				// do something with error
+				res.send(output);
+			}
+		}
+
+		data.updated_at = Date.now();
+		data.updated_by = req.user._id;
+		
+		dcl.update(id, data, 'Task', cb);
 	},
 
     /**

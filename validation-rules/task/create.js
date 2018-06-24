@@ -34,13 +34,7 @@ module.exports = {
       "type": "array",
       "items": [
         {
-          "type": "object",
-          "items": {
-            "uuid": { "type": "string" },
-            "name": { "type": "string" },
-            "path": { "type": "string" },
-            "id": { "type": "string" }
-          }
+          "type": "string",
         }
       ]
     },
@@ -56,16 +50,20 @@ module.exports = {
     "checkItemsChecked": {
       "type": "number"
     },
-    "service": {
-      "type": "string",
-      "minLength": 24,
-      "maxLength": 24
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 24,
+        "maxLength": 24
+      }
     },
     "comments": {
       "type": "array",
       "items": {
         "message": { "type": "string" },
-        "user_id": { "type": "string" },
+        "user": { "type": "string" },
+        "user_name": { "type": "string" },
         "time": { "type": "string" },
       }
     },

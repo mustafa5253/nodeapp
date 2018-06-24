@@ -4,6 +4,15 @@ module.exports = {
     "name": {
       "type": "string"
     },
+    "documents": {
+      "type": "array",
+      "items": [
+        { "type": "string" }
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
     "company_id": {
       "type": "string",
       "minLength": 24,

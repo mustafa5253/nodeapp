@@ -12,6 +12,7 @@ var DocumentSchema = new Schema({
 	destination: { type: String, required: true },
 	filename: { type: String, required: true },
 	path: { type: String, required: true },
+	document_id: { type: Schema.Types.ObjectId, ref: 'DocumentNames' },
 	size: { type: String, required: true },
 	created_by: String,
 	created_at: { type: Date, time: true },

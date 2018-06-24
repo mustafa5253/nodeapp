@@ -14,33 +14,34 @@ const superAdminNavigationData = [
     {
         'title': 'Admins',
         'type': 'item',
-        'icon': 'star',
+        'icon': 'supervised_user_circle',
         'url': '/admins',
     },
     {
         'title': 'Plans for Admin',
         'type': 'item',
-        'icon': 'star',
+        'icon': 'insert_chart_outlined',
         'url': '/plans',
     },
     {
         'title': 'Send Email',
         'type': 'item',
-        'icon': 'star',
+        'icon': 'email',
         'url': '/email',
     },
     {
         'title': 'Notification/SMS/Chat',
         'type': 'item',
-        'icon': 'star',
-        'url': '/plans',
-    },
-    {
-        'title': 'Templates',
-        'type': 'item',
-        'icon': 'star',
-        'url': '/plans',
+        'icon': 'add_alert',
+        'url': '/chat',
     }
+    // ,
+    // {
+    //     'title': 'Templates',
+    //     'type': 'item',
+    //     'icon': 'star',
+    //     'url': '/templates',
+    // }
 ];
 
 const adminNavigationData = [
@@ -51,27 +52,33 @@ const adminNavigationData = [
         'url': '/dashboard',
     },
     {
+        'title': 'Tasks',
+        'type': 'item',
+        'icon': 'work',
+        'url': '/tasks',
+    },
+    {
         'title': 'Employees',
         'type': 'item',
-        'icon': 'star',
+        'icon': 'account_box',
         'url': '/employees',
     },
     {
         'title': 'Customers',
         'type': 'item',
-        'icon': 'star',
+        'icon': 'account_circle',
         'url': '/customers',
     },
     {
         'title': 'Services',
         'type': 'item',
-        'icon': 'star',
+        'icon': 'offline_bolt',
         'url': '/services',
     },
     {
         'title': 'Plans for Customer',
         'type': 'item',
-        'icon': 'star',
+        'icon': 'insert_chart_outlined',
         'url': '/plans',
     }
 ];
@@ -87,14 +94,14 @@ const employeeNavigationData = [
     {
         'title': 'Customers',
         'type': 'item',
-        'icon': 'star',
+        'icon': 'account_circle',
         'url': '/customers',
     },
     {
-        'title': 'To do',
+        'title': 'Tasks',
         'type': 'item',
-        'icon': 'star',
-        'url': '/todo',
+        'icon': 'work',
+        'url': '/tasks',
     }
 ];
 
@@ -107,21 +114,21 @@ const customerNavigationData = [
         'url': '/dashboard',
     },
     {
-        'title': 'Documents',
+        'title': 'My applications',
         'type': 'item',
-        'icon': 'star',
-        'url': '/documents',
+        'icon': 'work',
+        'url': '/tasks',
     },
     {
-        'title': 'To do',
+        'title': 'Documents',
         'type': 'item',
-        'icon': 'star',
-        'url': '/todo',
+        'icon': 'insert_drive_file',
+        'url': '/documents',
     },
     {
         'title': 'Pricing',
         'type': 'item',
-        'icon': 'star',
+        'icon': 'monetization_on',
         'url': '/plans/pricing',
     }
 ];

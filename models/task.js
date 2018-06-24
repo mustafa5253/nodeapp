@@ -11,27 +11,15 @@ var TaskSchema = new Schema({
 	company_id: String,
 	branch_id: String,
 	status: String,
-	attachments: {
-		type: Array,
-		items: [
-			{
-				type: Object,
-				items: {
-					uuid: { type: String },
-					name: { type: String },
-					path: { type: String },
-					id: { type: String }
-				}
-			}
-		]
-	},
+	attachments: [{ type: Schema.Types.ObjectId, ref: 'Document' }],
 	checklists: Array,
 	activities: Array,
 	checkItems: Number,
 	checkItemsChecked: Number,
-	service: String,
-	comments: [{ message: String, user_name: String, time: { type: String } }],
+	services: [{ type: Schema.Types.ObjectId, ref: 'Service' }],
+	comments: [{ message: String, user: { type: Schema.Types.ObjectId, ref: 'User' }, time: { type: Date, time: true } }],
 	created_by: String,
+	updated_by: String,
 	created_at: { type: Date, time: true },
 	updated_at: { type: Date, time: true },
 });

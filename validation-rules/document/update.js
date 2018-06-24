@@ -15,6 +15,7 @@ module.exports = {
     "destination": { "type": "string" },
     "filename": { "type": "string" },
     "path": { "type": "string" },
+    "document_id": { "type": "string" },
     "size": { "type": "string" },
     "created_by": {
       "type": "string",

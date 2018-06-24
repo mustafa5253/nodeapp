@@ -26,5 +26,9 @@ module.exports = {
   mail: {
   	create: require('./mail/create'),
   	update: require('./mail/update'),
+  },
+  chat: {
+    create: require('./chat/create'),
+    update: require('./chat/update'),
   }
 };

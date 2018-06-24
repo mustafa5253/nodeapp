@@ -8,10 +8,7 @@ var userSchema = new Schema({
 	gender: String,
 	dob: { type: Date, time: true },
 	profile_photo: String,
-	mobile: {
-		code: String,
-		number: String
-	},
+	mobile: String,
 	email: { type: String, unique: true, lowercase: true, trim: true },
 	password: String,
 	address: {

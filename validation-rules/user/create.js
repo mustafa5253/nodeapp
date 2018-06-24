@@ -12,6 +12,9 @@ module.exports = {
       "type": "string",
       "format": "email"
     },
+    "mobile": {
+      "type": "string"
+    },
     "password": {
       "type": "string",
       "minLength": 5

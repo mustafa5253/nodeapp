@@ -14,6 +14,15 @@ module.exports = {
       "minLength": 24,
       "maxLength": 24
     },
+    "documents": {
+      "type": "array",
+      "items": [
+        { "type": "string" }
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
     "is_active": {
       "type": "boolean"
     },

@@ -10,7 +10,7 @@ module.exports = {
     getPaginatedList: (modelName, condition, page, count, callbackFn) => {
 
         let response = {};
-        models[modelName].paginate(condition, { page: page, limit: count })
+        models[modelName].paginate(condition, { page: page, limit: count, sort: { _id: -1 } })
             .then(results => {
                 /**
                  * Response looks like:
@@ -67,6 +67,29 @@ module.exports = {
         });
     },
 
+    getAllAndPopulate: (modelName, modelToPopulateName, callbackFn) => {
+
+        let response = {};
+
+        models[modelName].
+          find().
+          sort('-_id').
+          populate(modelToPopulateName).
+          exec(function (err, rows) {
+            if (err) {
+                response.status = 'error';
+                response.data = err;
+                console.log('error during populate is :', err);
+            } else {
+                response.status = 'success';
+                response.data = rows;
+            }
+
+            callbackFn(response);
+            
+          });
+    },
+
     getById: (id, modelName, callbackFn) => {
 
         let response = {};
@@ -82,6 +105,40 @@ module.exports = {
 
             callbackFn(response);
         });
+    },
+
+    getByIdAndPopulate: (id, modelToPopulateName, modelName, callbackFn) => {
+
+        let response = {};
+
+        // models[modelName].findOne({ _id: id }, (err, row) => {
+        //     if (err) {
+        //         response.status = 'error';
+        //         response.data = err;
+        //     } else {
+        //         response.status = 'success';
+        //         response.data = row;
+        //     }
+
+        //     callbackFn(response);
+        // });
+
+        models[modelName].
+          findOne({ _id: id }).
+          populate(modelToPopulateName).
+          exec(function (err, row) {
+            if (err) {
+                response.status = 'error';
+                response.data = err;
+                console.log('error during populate is :', err);
+            } else {
+                response.status = 'success';
+                response.data = row;
+            }
+
+            callbackFn(response);
+            
+          });
     },
 
     create: (data, modelName, cb) => {
@@ -106,7 +163,7 @@ module.exports = {
 
         let response = {};
 
-        model.collection.insert(data, (err, rows) => {
+        models[model].insertMany(data, (err, rows) => {
             if (err) {
                 response.status = 'error';
                 response.data = err;
@@ -116,7 +173,6 @@ module.exports = {
             }
             cb(response)
         });
-
 
     },
 

@@ -77,6 +77,8 @@ module.exports = {
 					});
 				}
 
+				data.created_by = req.user._id;
+
 				dcl.create(data, 'Document', cb);
 
 			} else {
@@ -144,5 +146,23 @@ module.exports = {
 		}
 
 		dcl.delete(id, 'Document', cb);
+	},
+
+	/**
+     * get names of all documents
+     */
+	getDocumentNames: (req, res) => {
+
+		var cb = (response) => {
+			if (response.status === 'success') {
+				// do something with data
+				res.send(response);
+			} else {
+				// do something with error
+				res.send(response);
+			}
+		}
+
+		dcl.getAll('DocumentNames', cb);
 	}
 };

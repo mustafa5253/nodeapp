@@ -33,8 +33,9 @@ var app = express();
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Origin', req.headers.origin);
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,PATCH,POST,DELETE');
   res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Authorization');
+  res.header('Access-Control-Request-Headers', 'X-Requested-With, content-type, Cache-Control');
   if ('OPTIONS' == req.method) {
     res.sendStatus(200);
   } else {
@@ -115,6 +116,8 @@ var task = require('./routes/task.route');
 var file = require('./routes/file.route');
 var notification = require('./routes/notification.route');
 var mail = require('./routes/mail.route');
+var chat = require('./routes/chat.route');
+var documentNamesRoute = require('./routes/document-names.route');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -155,6 +158,8 @@ app.use('/api/task', task);
 app.use('/api/file', file);
 app.use('/api/notification', notification);
 app.use('/api/mail', mail);
+app.use('/api/chat', chat);
+app.use('/api/document-names', documentNamesRoute);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
