@@ -111,18 +111,6 @@ module.exports = {
 
         let response = {};
 
-        // models[modelName].findOne({ _id: id }, (err, row) => {
-        //     if (err) {
-        //         response.status = 'error';
-        //         response.data = err;
-        //     } else {
-        //         response.status = 'success';
-        //         response.data = row;
-        //     }
-
-        //     callbackFn(response);
-        // });
-
         models[modelName].
           findOne({ _id: id }).
           populate(modelToPopulateName).
@@ -134,6 +122,30 @@ module.exports = {
             } else {
                 response.status = 'success';
                 response.data = row;
+            }
+
+            callbackFn(response);
+            
+          });
+    },
+
+    searchEntityByIndexedFields: (searchString, modelName, callbackFn) => {
+
+        let response = {};
+
+        models[modelName].
+          find({$text: {$search: searchString}}).
+          // limit(10).
+          exec(function (err, rows) {
+            if (err) {
+                response.status = 'error';
+                response.data = err;
+            } else {
+                response.status = 'success';
+                response.data = {
+                    docs: rows,
+                    total: rows.length
+                };
             }
 
             callbackFn(response);

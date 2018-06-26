@@ -3,8 +3,8 @@ var Schema = mongoose.Schema;
 var mongoosePaginate = require('mongoose-paginate');
 
 var userSchema = new Schema({
-	first_name: { type: String, trim: true },
-	last_name: { type: String, trim: true },
+	first_name: { type: String, trim: true, text: true },
+	last_name: { type: String, trim: true, text: true },
 	gender: String,
 	dob: { type: Date, time: true },
 	profile_photo: String,
@@ -38,10 +38,14 @@ var userSchema = new Schema({
 	},
 	created_by: String,
 	active_status: String
-},{
+},
+{
 	timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
-}
-);
+});
+
 
 userSchema.plugin(mongoosePaginate);
+
+userSchema.index({ first_name: 'text', last_name: 'text' });
+
 module.exports = mongoose.model('User', userSchema);

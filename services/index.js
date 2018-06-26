@@ -15,5 +15,6 @@ module.exports = {
   document 					    : require('./document/document.service'),
   notification 					: require('./notification/notification.service'),
   mail                  : require('./mail/mail.service'),
-  chat 					        : require('./chat/chat.service'),
+  chat                  : require('./chat/chat.service'),
+  search 					        : require('./search/search.service'),
 };

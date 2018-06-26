@@ -12,7 +12,7 @@ module.exports = {
     /**
      * list
      */
-	list: (req, res) => {
+	list: (req, res) => {		
 
 		var cb = (response) => {
 			if (response.status === 'success') {
@@ -56,6 +56,9 @@ module.exports = {
      */
 	create: (req, res) => {
 
+		// req.app.io.emit('tasksListRequested', { key:"value" });
+
+		
 		let response = {};
 		let data = req.body;
 
@@ -70,6 +73,9 @@ module.exports = {
 				let cb = (output) => {
 					if (output.status === 'success') {
 						// do something with data
+						console.log('req.user.company_id is :', req.user.company_id);
+						req.app.io.sockets.in(req.user.company_id).emit('newNotification', { data: output.data });
+
 						res.send(output);
 					} else {
 						// do something with error

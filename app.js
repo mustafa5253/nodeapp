@@ -1,5 +1,5 @@
 var express = require('express');
-// var socket_io    = require("socket.io");
+var socket_io    = require("socket.io");
 var helmet = require('helmet');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -23,12 +23,12 @@ mongoose.connect(databaseUrl, { useMongoClient: true}); // connect to our databa
 var app = express();
 
 // Socket.io
-// var io = socket_io();
-// app.io = io;
+var io = socket_io();
+app.io = io;
 // next line is the money
 // app.set('socketio', io);
 
-// var routes = require('./routes/socket.route')(io);
+var routes = require('./routes/socket.route')(io);
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Credentials', true);
@@ -71,7 +71,7 @@ app.use(helmet());
 
 app.use(cookieParser());
 
-app.use(session({
+var sessionMiddleware = session({
   secret: 'ilovescotchscotchyscotchscotch', // session secret
   // store: new MongoStore({ url: 'mongodb://apmeena:12345@ds245357.mlab.com:45357/live-db'}),
   resave: false,
@@ -83,8 +83,9 @@ app.use(session({
     maxAge: 60000 * 30, // 30 minute
     sameSite: false
   }
-}));
+});
 
+// app.use(sessionMiddleware);
 
 // var cookieSession = require('cookie-session');
 
@@ -102,6 +103,23 @@ app.use(session({
 
 require('./config/passport')(passport); // pass passport for configuration
 
+io.use(function(socket, next) {
+  sessionMiddleware(socket.request, socket.request.res, next);
+});
+
+app.use(sessionMiddleware);
+
+app.get("/", function(req, res) {
+  console.log('the session in normal request is :', req.session);
+  // Session object in a normal request
+});
+
+// io.on("connection", function(socket) {
+//   console.log('the socket io connection session is :', socket.request.session);
+//   // Now it's available from Socket.IO sockets too! Win!
+// });
+
+
 var index = require('./routes/index');
 var user = require('./routes/user.route');
 var seeders = require('./routes/seeder.route');
@@ -118,6 +136,7 @@ var notification = require('./routes/notification.route');
 var mail = require('./routes/mail.route');
 var chat = require('./routes/chat.route');
 var documentNamesRoute = require('./routes/document-names.route');
+var searchRoute = require('./routes/search.route');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -160,6 +179,7 @@ app.use('/api/notification', notification);
 app.use('/api/mail', mail);
 app.use('/api/chat', chat);
 app.use('/api/document-names', documentNamesRoute);
+app.use('/api/search', searchRoute);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

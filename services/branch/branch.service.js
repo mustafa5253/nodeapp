@@ -14,7 +14,7 @@ module.exports = {
     list: (req, res) => {
 
     	var cb = (response) => {
-			if(response.status === 'success'){
+			if(response.status === 'success') {
 				// do something with data
 				res.send(response);
 			} else {
