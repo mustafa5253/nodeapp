@@ -5,5 +5,5 @@ module.exports = {
     "amount": { "type": "number" },
     "razorpay_payment_id": { "type": "string" }
   },
-  "additionalProperties": false
+  "additionalProperties": true
 };

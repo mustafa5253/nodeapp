@@ -25,7 +25,7 @@ module.exports = {
 			}
 		}
 
-		const condition = {};
+		const condition = { created_by: req.user._id };
 		// dcl.getAll('Document', cb);
 		dcl.getPaginatedList('Document', condition, req.page, req.count, cb);
 	},
@@ -58,8 +58,6 @@ module.exports = {
 		let response = {};
 		// Combine two objects
 		let data = Object.assign(req.body, req.file);
-
-		console.log('Hello Arppit the data is :', data);
 
 		validationEngine(data, 'document', 'create', (isPassed, validationResult) => {
 			if (isPassed) {

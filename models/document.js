@@ -32,4 +32,5 @@ var DocumentSchema = new Schema({
 });
 
 DocumentSchema.plugin(mongoosePaginate);
+
 module.exports = mongoose.model('Document', DocumentSchema);

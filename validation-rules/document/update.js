@@ -36,5 +36,5 @@ module.exports = {
     "location": { "type": "string" },
     "etag": { "type": "string" },
   },
-  "additionalProperties": false
+  "additionalProperties": true
 };

@@ -6,6 +6,7 @@
 
 var dcl = require('../../dcl');
 var validationEngine = require('../../validation-engine');
+var afterCreateUserHook = require('../../hooks/user-created.hook');
 
 module.exports = {
 
@@ -114,6 +115,7 @@ module.exports = {
         		let cb = (output) => {
 					if(output.status === 'success'){
 						// do something with data
+						afterCreateUserHook.send3WayAlert(req, output.data);
 						res.send(output);
 					} else {
 						// do something with error

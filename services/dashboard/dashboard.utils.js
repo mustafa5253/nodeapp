@@ -48,7 +48,7 @@ module.exports = {
                     'title': 'Total money received',
                     'data': {
                         'label': 'INR',
-                        'count': totalMoneyReceived ? totalMoneyReceived / 100 : 0,
+                        'count': totalMoneyReceived,
                         'extra': {
                             'label': '',
                             'count': ''

@@ -53,5 +53,5 @@ module.exports = {
     "created_at": { "type": ["null", "string"] },
     "updated_at":  { "type": ["null", "string"] }
   },
-  "additionalProperties": false
+  "additionalProperties": true
 };

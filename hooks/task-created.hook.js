@@ -2,7 +2,7 @@
 // Whatever we need to do we will do here
 
 const MSG91_AUTHKEY = '223100AZ7W1aF9S9J5b3512bf';
-const MSG91_SENDERID = '754970';
+const MSG91_SENDERID = 'MIRROR';
 const MSG91_ROUTE = '4'
 
 const msg91 = require("msg91")(MSG91_AUTHKEY, MSG91_SENDERID, MSG91_ROUTE);
@@ -28,8 +28,7 @@ module.exports = {
         // Send Email using Send grid
         services.util.getAdminByCompanyId(req.user.company_id, (admin) => {
             admin = (admin && admin.length && admin.length === 1) ? admin[0] : null;
-            console.log('the user in admin is :', admin);
-
+            
             if (admin) {
                 sgMail.setApiKey(SENDGRID_API_KEY);
                 sgMail.setSubstitutionWrappers('{{', '}}'); // Configure the substitution tag wrappers globally

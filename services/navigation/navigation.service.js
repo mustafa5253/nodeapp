@@ -80,6 +80,12 @@ const adminNavigationData = [
         'type': 'item',
         'icon': 'insert_chart_outlined',
         'url': '/plans',
+    },
+    {
+        'title': 'Renew',    
+        'type': 'item',
+        'icon': 'monetization_on',
+        'url': '/plans/pay',
     }
 ];
 

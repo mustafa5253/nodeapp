@@ -8,9 +8,12 @@ var planSchema = new Schema({
 	price: Number,
 	currency: { code: String, name: String },
 	country: { code: String, name: String },
+	company_id: String,
 	created_by: String,
+	created_for: String,
 	created_at: { type: Date, time: true },
 	updated_at: { type: Date, time: true },
+
 });
 
 planSchema.plugin(mongoosePaginate);
