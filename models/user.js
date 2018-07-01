@@ -3,8 +3,8 @@ var Schema = mongoose.Schema;
 var mongoosePaginate = require('mongoose-paginate');
 
 var userSchema = new Schema({
-	first_name: { type: String, trim: true, text: true },
-	last_name: { type: String, trim: true, text: true },
+	first_name: { type: String, trim: true },
+	last_name: { type: String, trim: true },
 	gender: String,
 	dob: { type: Date, time: true },
 	profile_photo: String,
@@ -45,7 +45,5 @@ var userSchema = new Schema({
 
 
 userSchema.plugin(mongoosePaginate);
-
-userSchema.index({ first_name: 'text', last_name: 'text' });
 
 module.exports = mongoose.model('User', userSchema);

@@ -16,5 +16,7 @@ module.exports = {
   notification 					: require('./notification/notification.service'),
   mail                  : require('./mail/mail.service'),
   chat                  : require('./chat/chat.service'),
-  search 					        : require('./search/search.service'),
+  search 					      : require('./search/search.service'),
+  util                  : require('./util/util.service'),
+  payment 					    : require('./payment/payment.service'),
 };

@@ -18,7 +18,18 @@ module.exports = {
       "maxLength": 24
     },
     "created_at": { "type": "string" },
-    "updated_at": { "type": "string" }
+    "updated_at": { "type": "string" },
+
+    "bucket": { "type": "string" },
+    "key": { "type": "string" },
+    "acl": { "type": "string" },
+    "contentType": { "type": "string" },
+    "contentDisposition": { "type": ["string", "null"] },
+    "storageClass": { "type": "string" },
+    "serverSideEncryption": { "type": ["string", "null"] },
+    "metadata": { "type": ["string", "null"] },
+    "location": { "type": "string" },
+    "etag": { "type": "string" },
   },
   "additionalProperties": false
 };

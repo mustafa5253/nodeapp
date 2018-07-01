@@ -17,14 +17,26 @@ function setUserTypeInReq(req, res, next) {
 }
 
 /*
+ * GET ALL EMPLOYEES
+ */
+router.get('/all-employees', services.user.getAllEmployees);
+
+/*
  * GET
  */
 router.get('/:id', services.user.show);
+
+
 
 /*
  * POST
  */
 router.post('/', services.user.create);
+
+/*
+ * PUT - Change Password
+ */
+router.put('/change-password', services.user.changePassword);
 
 /*
  * PUT

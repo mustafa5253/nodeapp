@@ -25,7 +25,9 @@ module.exports = {
 			}
 		}
 
-		dcl.getAll('Service', cb);
+		// dcl.getAll('Service', cb);
+		dcl.getPaginatedList('Service', { company_id: req.user.company_id }, req.page, req.count, cb);			
+
 	},
 
     /**

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var mongoosePaginate = require('mongoose-paginate');
 
 var ServiceSchema = new Schema({
 	name: { type: String, trim: true, required: true },
@@ -20,5 +21,8 @@ let autoPopulateLead = function(next) {
 ServiceSchema.
   pre('findOne', autoPopulateLead).
   pre('find', autoPopulateLead);
+
+ServiceSchema.plugin(mongoosePaginate);
+
 
 module.exports = mongoose.model('Service', ServiceSchema);

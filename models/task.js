@@ -26,4 +26,5 @@ var TaskSchema = new Schema({
 
 
 TaskSchema.plugin(mongoosePaginate);
+
 module.exports = mongoose.model('Task', TaskSchema);

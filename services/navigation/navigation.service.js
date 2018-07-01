@@ -126,10 +126,10 @@ const customerNavigationData = [
         'url': '/documents',
     },
     {
-        'title': 'Pricing',
+        'title': 'Renew',    
         'type': 'item',
         'icon': 'monetization_on',
-        'url': '/plans/pricing',
+        'url': '/plans/pay',
     }
 ];
 

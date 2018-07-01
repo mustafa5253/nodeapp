@@ -59,6 +59,8 @@ module.exports = {
 		// Combine two objects
 		let data = Object.assign(req.body, req.file);
 
+		console.log('Hello Arppit the data is :', data);
+
 		validationEngine(data, 'document', 'create', (isPassed, validationResult) => {
 			if (isPassed) {
 				let cb = (output) => {
@@ -130,14 +132,15 @@ module.exports = {
     /**
      * remove
      */
-	remove: (req, res) => {
+	remove: (req, res, callBack) => {
 		let id = req.params.id;
 
 		var cb = (response) => {
 			if (response.status === 'success') {
-				fs.unlink(response.data.path, (err) => {
-					res.send(response);
-				})
+				callBack(response.data);
+				// fs.unlink(response.data.path, (err) => {
+				// 	res.send(response);
+				// })
 				// do something with data
 			} else {			
 				// do something with error

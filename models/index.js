@@ -9,4 +9,5 @@ module.exports = {
   Document: require('./document'),
   Mail: require('./mail'),
   DocumentNames: require('./document-names'),
+  Payment: require('./payment'),
 };

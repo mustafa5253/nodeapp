@@ -24,7 +24,7 @@ module.exports = {
 			}
 		}
        
-        dcl.getAll('Plan', cb);
+        dcl.getPaginatedList('Plan', { created_by: req.user._id }, req.page, req.count, cb); 
     },
 
     /**

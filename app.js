@@ -35,7 +35,7 @@ app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', req.headers.origin);
   res.header('Access-Control-Allow-Methods', 'GET,PUT,PATCH,POST,DELETE');
   res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Authorization');
-  res.header('Access-Control-Request-Headers', 'X-Requested-With, content-type, Cache-Control');
+  res.header('Access-Control-Request-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   if ('OPTIONS' == req.method) {
     res.sendStatus(200);
   } else {
@@ -45,28 +45,6 @@ app.use(function(req, res, next) {
 
 app.use(compression());
 app.use(helmet());
-
-// required for passport
-
-// var proxy = require('express-http-proxy');
-// app.use('/api', proxy('localhost:4200'));
-
-// app.use('/', express.static('public'));
-// app.get('*', function (req, res) {
-//   res.sendFile(path.join(process.cwd(), 'public', 'index.html'));
-// });
-
-// app.use(function(req, res, next) {
-//   res.header('Access-Control-Allow-Credentials', true);
-//   res.header('Access-Control-Allow-Origin', req.headers.origin);
-//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-//   res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-//   if ('OPTIONS' == req.method) {
-//        res.send(200);
-//    } else {
-//        next();
-//    }
-// });
 
 
 app.use(cookieParser());
@@ -80,26 +58,10 @@ var sessionMiddleware = session({
   cookie: {
     secure: false,
     httpOnly: true,
-    maxAge: 60000 * 30, // 30 minute
+    maxAge: 60000 * 60 * 10, // 10 hrs
     sameSite: false
   }
 });
-
-// app.use(sessionMiddleware);
-
-// var cookieSession = require('cookie-session');
-
-// app.use(cookieSession({
-//   name: 'my-session',
-//   keys: ['ok'],
-
-//   // Cookie Options
-//   maxAge: 24 * 60 * 60 * 1000, // 24 hours
-//   signed: false,
-//   overwrite: false
-// }));
-
-// app.use(cors()); // CORS-enabled for all origins
 
 require('./config/passport')(passport); // pass passport for configuration
 
@@ -108,17 +70,6 @@ io.use(function(socket, next) {
 });
 
 app.use(sessionMiddleware);
-
-app.get("/", function(req, res) {
-  console.log('the session in normal request is :', req.session);
-  // Session object in a normal request
-});
-
-// io.on("connection", function(socket) {
-//   console.log('the socket io connection session is :', socket.request.session);
-//   // Now it's available from Socket.IO sockets too! Win!
-// });
-
 
 var index = require('./routes/index');
 var user = require('./routes/user.route');
@@ -137,6 +88,7 @@ var mail = require('./routes/mail.route');
 var chat = require('./routes/chat.route');
 var documentNamesRoute = require('./routes/document-names.route');
 var searchRoute = require('./routes/search.route');
+var payment = require('./routes/payment.route');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -180,6 +132,7 @@ app.use('/api/mail', mail);
 app.use('/api/chat', chat);
 app.use('/api/document-names', documentNamesRoute);
 app.use('/api/search', searchRoute);
+app.use('/api/payment', payment);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

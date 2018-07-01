@@ -5,6 +5,7 @@ module.exports = (req, res, next) => {
 	} else {
 		res.send({
 			status: 'error',
+			data: null,
 			message: 'You don\'t have permission to perform this action.'
 		});
 	}

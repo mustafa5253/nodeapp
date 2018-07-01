@@ -25,16 +25,58 @@ module.exports = {
 		}
 
 		if(req.user_type){
-			const condition = { 'user_type': req.user_type };
-			dcl.getPaginatedList('User', condition, req.page, req.count, cb);			
+ 			
+ 			var condition = {};
+
+ 			if (req.user.user_type === 'super_admin') {
+ 				condition = { 'user_type': req.user_type };
+ 			} else {
+ 				condition = { 'user_type': req.user_type, company_id: req.user.company_id };
+ 			}
+
+			dcl.getPaginatedList('User', condition, req.page, req.count, cb);
+					
 		} else {
 			res.send({
 				status: 'error',
-				data: 'User type not found in request.'
+				data: [],
+				message: 'User type not found in request.'
 			});
 		}
        
     },
+
+    /**
+     * list of all employee
+     */
+    getAllEmployees: (req, res) => {
+
+    	var cb = (response) => {
+			if(response.status === 'success'){
+				// do something with data
+				res.send(response);
+			} else {
+				// do something with error
+				res.send(response);
+			}
+		}
+
+		if(req.user.user_type === 'admin') {
+
+			const condition = { 'user_type': 'employee', company_id: req.user.company_id };
+			const fields = '_id first_name last_name email';
+
+			dcl.getAllWhere('User', condition, fields, cb);		
+
+		} else {
+			res.send({
+				status: 'error',
+				data: [],
+				message: 'You can\'t access this resource.'
+			});
+		}
+       
+    }, 
 
     /**
      * show
@@ -160,6 +202,47 @@ module.exports = {
 		   		res.status(400).json(response);
         	}
         });
+    },
+
+    changePassword: (req, res) => {
+
+    	let response = {};
+
+    	let id = req.user._id;
+        let data = req.body;
+
+        if (data.current_password && data.new_password && data.new_password === data.confirm_password) {
+
+        	dcl.getById(id, 'User', (userInfo) => {
+        		if (userInfo.status === 'success') {
+        			if (userInfo.data.password === data.current_password) {
+
+						dcl.update(id, { password: data.new_password }, 'User', (updatePasswordResponse) => {
+							if(updatePasswordResponse.status === 'success'){
+								// do something with data
+								res.send(updatePasswordResponse);
+							} else {
+								// do something with error
+								res.send(updatePasswordResponse);
+							}
+						});					
+
+        			} else {
+			        	response.status = 'validationFailed';
+						response.errors = 'Current password does\'t match.';
+				   		res.status(200).json(response);
+			        }
+        		}
+        	});
+
+
+        } else {
+        	response.status = 'validationFailed';
+			response.errors = 'New password and Confirm password should be same.';
+	   		res.status(200).json(response);
+        }
+
+
     },
 
     /**

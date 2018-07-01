@@ -30,5 +30,9 @@ module.exports = {
   chat: {
     create: require('./chat/create'),
     update: require('./chat/update'),
+  },
+  payment: {
+    create: require('./payment/create'),
+    update: require('./payment/update'),
   }
 };

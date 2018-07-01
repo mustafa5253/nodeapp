@@ -6,6 +6,7 @@
 
 var dcl = require('../../dcl');
 var validationEngine = require('../../validation-engine');
+var afterCreateTaskHook = require('../../hooks/task-created.hook');
 
 module.exports = {
 
@@ -24,10 +25,17 @@ module.exports = {
 			}
 		}
 
-		// dcl.getAll('Task', cb);
-		dcl.getPaginatedList('Task', {}, req.page, req.count, cb);
-		// dcl.getAllAndPopulate('Task', 'attachments services', cb);
+		var conditions = {};
 
+		if (req.user.user_type === 'customer') {
+			conditions = { company_id: req.user.company_id, created_by: req.user._id };
+		} else if(req.user.user_type === 'employee') {
+			conditions = { company_id: req.user.company_id, assigned_to: req.user._id };
+		} else {
+			conditions = { company_id: req.user.company_id };
+		}
+
+		dcl.getPaginatedList('Task', conditions, req.page, req.count, cb);
 	},
 
     /**
@@ -73,9 +81,8 @@ module.exports = {
 				let cb = (output) => {
 					if (output.status === 'success') {
 						// do something with data
-						console.log('req.user.company_id is :', req.user.company_id);
-						req.app.io.sockets.in(req.user.company_id).emit('newNotification', { data: output.data });
-
+						// Send 3 way notifications
+						afterCreateTaskHook.send3WayAlert(req, output.data);
 						res.send(output);
 					} else {
 						// do something with error

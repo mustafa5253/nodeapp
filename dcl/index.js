@@ -50,11 +50,11 @@ module.exports = {
         });
     },
 
-    getAllWhere: (modelName, conditionObj,callbackFn) => {
+    getAllWhere: (modelName, conditionObj, fields, callbackFn) => {
 
         let response = {};
 
-        models[modelName].find(conditionObj).sort('-_id').find({}, (err, rows) => {
+        models[modelName].find(conditionObj, fields).sort('-_id').find({}, (err, rows) => {
             if (err) {
                 response.status = 'error';
                 response.data = err;
@@ -107,6 +107,33 @@ module.exports = {
         });
     },
 
+    getSumWhere: (modelName, conditions, callbackFn) => {
+
+        let response = {};
+
+        models[modelName].aggregate([{
+            // , created_at: { $gte: conditions.fromDate, $lt: conditions.toDate }
+            $match : { $and : [ conditions ] },
+        },{
+            $group : {
+                _id : null,
+                total : {
+                    $sum : "$amount"
+                }
+            }
+        }], (err, row) => {
+            if (err) {
+                response.status = 'error';
+                response.data = err;
+            } else {
+                response.status = 'success';
+                response.data = row;
+            }
+
+            callbackFn(response);
+        });
+    },
+
     getByIdAndPopulate: (id, modelToPopulateName, modelName, callbackFn) => {
 
         let response = {};
@@ -129,14 +156,26 @@ module.exports = {
           });
     },
 
-    searchEntityByIndexedFields: (searchString, modelName, callbackFn) => {
+    searchEntityByFields: (searchString, fieldsArray, conditions, modelName, callbackFn) => {
 
         let response = {};
 
-        models[modelName].
-          find({$text: {$search: searchString}}).
-          // limit(10).
-          exec(function (err, rows) {
+        const orArr  = [];
+        const andArr = [];
+
+        fieldsArray.forEach((e) => {
+            orArr.push({ [e]: { '$regex': '.*' + searchString + '.*', '$options': 'i' }});
+        });
+
+        andArr.push({ $or: orArr });
+
+        for(let c in conditions) {
+            andArr.push({ [c] : conditions[c] });
+        }
+
+        models[modelName].find({
+            $and: andArr
+        }).exec(function (err, rows) {
             if (err) {
                 response.status = 'error';
                 response.data = err;

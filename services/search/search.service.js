@@ -25,7 +25,7 @@ module.exports = {
 
       if(req.entity === 'employee') {
         if(req.searchText) {
-          dcl.searchEntityByIndexedFields(req.searchText, 'User', cb);
+          dcl.searchEntityByFields(req.searchText, ['first_name', 'last_name'], { user_type: 'employee'}, 'User', cb);
         } else {
           const condition = { 'user_type': req.entity };
           dcl.getPaginatedList('User', condition, 1, 10, cb);
