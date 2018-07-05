@@ -30,7 +30,7 @@ module.exports = {
 		if (req.user.user_type === 'customer') {
 			conditions = { company_id: req.user.company_id, created_by: req.user._id };
 		} else if(req.user.user_type === 'employee') {
-			conditions = { company_id: req.user.company_id, assigned_to: req.user._id };
+			conditions = { company_id: req.user.company_id };
 		} else {
 			conditions = { company_id: req.user.company_id };
 		}

@@ -27,14 +27,14 @@ module.exports = {
         var conditions =  {};
 
         if (req.user.user_type === 'super_admin') {
-            conditions = { created_by: req.user._id };
+            conditions = { created_by: 'super_admin' };
         }
 
         if (req.user.user_type === 'admin') {
             if (req.count > 25) {
-                conditions = { company_id: 'super_admin_company', created_for: 'admin' };
+                conditions = { created_by: 'super_admin' };
             } else {
-                conditions = { created_by: req.user._id };
+                conditions = { company_id: req.user.company_id };
             }
         }
 
@@ -87,13 +87,12 @@ module.exports = {
                     
 
                 if (req.user.user_type === 'super_admin') {
-                    data.created_for = 'admin';
-                    data.company_id = 'super_admin_company';
+                    data.created_by = 'super_admin';
                 }
 
                 if (req.user.user_type === 'admin') {
                     data.company_id = req.user.company_id;
-                    data.created_for = 'customer';
+                    data.created_by = 'admin';
                 }
 
         		dcl.create(data, 'Plan', cb);
@@ -119,7 +118,7 @@ module.exports = {
         validationEngine(data, 'plan', 'update', (isPassed, validationResult) => {
         	if (isPassed) {
         		let cb = (output) => {
-					if(output.status === 'success'){
+					if(output.status === 'success') {
 						// do something with data
 						res.send(output);
 					} else {
@@ -127,6 +126,15 @@ module.exports = {
 						res.send(output);
 					}
 				}
+
+                if (req.user.user_type === 'super_admin') {
+                    data.created_by = 'super_admin';
+                }
+
+                if (req.user.user_type === 'admin') {
+                    data.company_id = req.user.company_id;
+                    data.created_by = 'admin';
+                }
        
         		dcl.update(id, data, 'Plan', cb);
         		

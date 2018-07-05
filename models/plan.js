@@ -6,14 +6,15 @@ var planSchema = new Schema({
 	name: { type: String, trim: true, required: true },
 	validity_in_days: Number,
 	price: Number,
-	currency: { code: String, name: String },
-	country: { code: String, name: String },
+	storage_limit: Number, // In GB
+	number_of_users: Number,
 	company_id: String,
-	created_by: String,
-	created_for: String,
+	created_by: String, // 'admin' || 'super_admin'
 	created_at: { type: Date, time: true },
 	updated_at: { type: Date, time: true },
-
+},
+{
+	timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
 });
 
 planSchema.plugin(mongoosePaginate);

@@ -12,13 +12,13 @@ const superAdminNavigationData = [
         'url': '/dashboard',
     },
     {
-        'title': 'Admins',
+        'title': 'Clients',
         'type': 'item',
         'icon': 'supervised_user_circle',
         'url': '/admins',
     },
     {
-        'title': 'Plans for Admin',
+        'title': 'Plans for Clients',
         'type': 'item',
         'icon': 'insert_chart_outlined',
         'url': '/plans',
@@ -64,7 +64,7 @@ const adminNavigationData = [
         'url': '/employees',
     },
     {
-        'title': 'Customers',
+        'title': 'Clients',
         'type': 'item',
         'icon': 'account_circle',
         'url': '/customers',
@@ -76,7 +76,7 @@ const adminNavigationData = [
         'url': '/services',
     },
     {
-        'title': 'Plans for Customer',
+        'title': 'Standard table of fees',
         'type': 'item',
         'icon': 'insert_chart_outlined',
         'url': '/plans',
@@ -98,7 +98,7 @@ const employeeNavigationData = [
         'url': '/dashboard',
     },
     {
-        'title': 'Customers',
+        'title': 'Clients',
         'type': 'item',
         'icon': 'account_circle',
         'url': '/customers',

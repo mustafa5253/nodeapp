@@ -1,5 +1,5 @@
 module.exports = {
-    "required": ["_id", "name", "validity_in_days", "price", "currency", "country"],
+    "required": ["_id", "name", "validity_in_days", "price"],
     "properties": {
         "_id": {
             "type": "string",
@@ -15,21 +15,11 @@ module.exports = {
         "price": {
             "type": "number",
         },
-        "currency": {
-            "type": "object",
-            "properties": {
-                "code": { "type": "string" },
-                "name": { "type": "string" },
-            },
-            "additionalProperties": false
+        "storage_limit": {
+            "type": ["number", "null"],
         },
-        "country": {
-            "type": "object",
-            "properties": {
-                "code": { "type": "string" },
-                "name": { "type": "string" },
-            },
-            "additionalProperties": false
+        "number_of_users": {
+            "type":  ["number", "null"],
         },
         "created_by": {
             "type": "string",
@@ -39,5 +29,5 @@ module.exports = {
         "created_at": { "type": "string" },
         "updated_at": { "type": "string" }
     },
-    "additionalProperties": true
+    "additionalProperties": false
 };
