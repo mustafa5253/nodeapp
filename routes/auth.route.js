@@ -62,6 +62,6 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     } else {
-        res.status(200).send({ status: 'error', code: 'LOGGED_OUT', data: 'You are not logged in.' });
+        res.status(401).send({ status: 'error', code: 'LOGGED_OUT', data: 'You are not logged in.' });
     }
 }
