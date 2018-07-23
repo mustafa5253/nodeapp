@@ -62,20 +62,10 @@ module.exports = {
 			}
 		}
 
-		if(req.user.user_type === 'admin') {
+		const condition = { 'user_type': 'employee', company_id: req.user.company_id };
+		const fields = '_id first_name last_name email';
 
-			const condition = { 'user_type': 'employee', company_id: req.user.company_id };
-			const fields = '_id first_name last_name email';
-
-			dcl.getAllWhere('User', condition, fields, cb);		
-
-		} else {
-			res.send({
-				status: 'error',
-				data: [],
-				message: 'You can\'t access this resource.'
-			});
-		}
+		dcl.getAllWhere('User', condition, fields, cb);
        
     }, 
 

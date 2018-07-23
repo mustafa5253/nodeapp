@@ -15,6 +15,7 @@ var DocumentSchema = new Schema({
 	document_id: { type: Schema.Types.ObjectId, ref: 'DocumentNames' },
 	size: { type: String, required: true },
 	created_by: String,
+	created_for: String,
 	created_at: { type: Date, time: true },
 	updated_at: { type: Date, time: true },
 

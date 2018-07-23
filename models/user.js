@@ -11,16 +11,16 @@ var userSchema = new Schema({
 	mobile: String,
 	email: { type: String, unique: true, lowercase: true, trim: true },
 	password: String,
-	address: {
-		state: {
-			code: String,
-			name: String
-		},
-		city: String,
-		postal_code: String,
-		address_line1: String,
-		address_line2: String,
-	},
+	// address: {
+	// 	state: {
+	// 		code: String,
+	// 		name: String
+	// 	},
+	// 	city: String,
+	// 	postal_code: String,
+	// 	address_line1: String,
+	// 	address_line2: String,
+	// },
 	group_id: String,
 	company_id: String,
 	company_name: String,
@@ -37,7 +37,17 @@ var userSchema = new Schema({
 		name: String
 	},
 	created_by: String,
-	active_status: String
+	active_status: String,
+	
+    firm_name: String,
+    gst_number: String,
+    aadhar_number: String,
+    tan_number: String,
+    cin_number: String,
+    pan_number: String,
+    address: String,
+    key_person: String,
+    status: String,
 },
 {
 	timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }

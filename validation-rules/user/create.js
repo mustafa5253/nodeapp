@@ -42,7 +42,20 @@ module.exports = {
     },
     "active_status": { "type": "string" },
     "created_at": { "type": ["null", "string"] },
-    "updated_at":  { "type": ["null", "string"] }
+    "updated_at":  { "type": ["null", "string"] },
+
+    "gender": { "type": [ "null", "string" ] },
+    "dob": { "type": [ "null", "string" ] },
+    "firm_name": { "type": [ "null", "string" ] },
+    "gst_number": { "type": [ "null", "string" ] },
+    "aadhar_number": { "type": [ "null", "string" ] },
+    "tan_number": { "type": [ "null", "string" ] },
+    "cin_number": { "type": [ "null", "string" ] },
+    "pan_number": { "type": [ "null", "string" ] },
+    "address": { "type": [ "null", "string" ] },
+    "key_person": { "type": [ "null", "string" ] },
+    "status": { "type": [ "null", "string" ] },
   },
-  "additionalProperties": true
+
+  "additionalProperties": false
 };

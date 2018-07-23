@@ -1,6 +1,6 @@
 module.exports = (req, res, next) => {
 
-	if (req.user && req.user.user_type === 'employee') {
+	if (req.user && req.user.user_type === 'admin' || req.user.user_type === 'customer') {
 		next();
 	} else {
 		res.

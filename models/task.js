@@ -18,6 +18,8 @@ var TaskSchema = new Schema({
 	checkItemsChecked: Number,
 	services: [{ type: Schema.Types.ObjectId, ref: 'Service' }],
 	comments: [{ message: String, user: { type: Schema.Types.ObjectId, ref: 'User' }, time: { type: Date, time: true } }],
+	feedback: String,
+	isPositiveFeedback: Boolean,
 	created_by: String,
 	updated_by: String,
 	created_at: { type: Date, time: true },

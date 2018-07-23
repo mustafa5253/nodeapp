@@ -75,6 +75,12 @@ module.exports = {
     "status": {
       "type": "string"
     },
+    "feedback": {
+      "type": "string"
+    },
+    "isPositiveFeedback": {
+      "type": ["boolean", "null"]
+    },
     "created_by": {
       "type": "string",
       "minLength": 24,
@@ -83,5 +89,5 @@ module.exports = {
     "created_at": { "type": "string"},
     "updated_at":  { "type": "string"}
   },
-  "additionalProperties": true
+  "additionalProperties": false
 };

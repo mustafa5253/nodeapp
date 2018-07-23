@@ -17,6 +17,11 @@ module.exports = {
       "minLength": 24,
       "maxLength": 24
     },
+    "created_for": {
+      "type": "string",
+      "minLength": 24,
+      "maxLength": 24
+    },
     "created_at": { "type": "string" },
     "updated_at": { "type": "string" },
 

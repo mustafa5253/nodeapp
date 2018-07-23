@@ -35,6 +35,10 @@ module.exports = {
 			conditions = { company_id: req.user.company_id };
 		}
 
+		if (req.status) {
+			conditions['status'] = req.status;
+		}
+
 		dcl.getPaginatedList('Task', conditions, req.page, req.count, cb);
 	},
 
