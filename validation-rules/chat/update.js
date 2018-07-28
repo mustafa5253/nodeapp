@@ -1,8 +1,8 @@
 module.exports = {
-  "required": ["message"],
+  "required": ["id", "dialog"],
   "properties": {
-  	"message": { "type": "string" },
-    "created_at": { "type": "string" }
+  	"id": { "type": "string" },
+    "dialog": { "type": "array" }
   },
-  "additionalProperties": true
+  "additionalProperties": false
 };

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var services = require('../services');
+var isSuperAdmin = require('../authorization/is-super-admin-guard');
 
 /*
  * GET ALL
@@ -20,6 +21,11 @@ function setUserTypeInReq(req, res, next) {
  * GET ALL EMPLOYEES
  */
 router.get('/all-employees', services.user.getAllEmployees);
+
+/*
+ * GET ALL ADMINS
+ */
+router.get('/all-admins', isSuperAdmin, services.user.getAllAdmins);
 
 /*
  * GET

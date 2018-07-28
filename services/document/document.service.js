@@ -25,7 +25,8 @@ module.exports = {
 			}
 		}
 
-		const condition = { created_by: req.user._id };
+		// const condition = { created_by: req.user._id };
+		const condition = { $or:[ {'created_by':req.user._id }, { 'created_for':req.user._id } ] };
 		// dcl.getAll('Document', cb);
 		dcl.getPaginatedList('Document', condition, req.page, req.count, cb);
 	},

@@ -70,6 +70,47 @@ module.exports = {
     }, 
 
     /**
+     * list of all admins
+     */
+    getAllAdmins: (req, res) => {
+
+    	var cb = (response) => {
+			if(response.status === 'success'){
+				// do something with data
+				res.send(response);
+			} else {
+				// do something with error
+				res.send(response);
+			}
+		}
+
+		const condition = { 'user_type': 'admin' };
+		const fields = '_id first_name last_name email';
+
+		dcl.getAllWhere('User', condition, fields, cb);
+       
+    },
+
+    getContactListForChat: (req, res) => {
+
+    	var cb = (response) => {
+			if(response.status === 'success') {
+				// do something with data
+				response.data = formatContactsForChat(response.data);
+				res.send(response);
+			} else {
+				// do something with error
+				res.send(response);
+			}
+		}
+
+		const condition = { 'user_type': 'admin' };
+		const fields = '_id first_name last_name email';
+
+		dcl.getAllWhere('User', condition, fields, cb);
+    },
+
+    /**
      * show
      */
     show: (req, res) => {
@@ -273,4 +314,22 @@ function deleteUser(user_id) {
 			}
 		}));
 	});
+}
+
+function formatContactsForChat(users) {
+
+	const newUserList = [];
+
+	users.forEach((user) => {
+
+		newUserList.push({
+			id: user._id,
+			name: user.first_name + ' ' + user.last_name,
+			avatar: 'assets/images/avatars/alice.jpg',
+	        status: 'online',
+	        mood: 'I never sign anything until I pretend to read it first..'
+		});
+	});
+
+	return newUserList;
 }

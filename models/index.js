@@ -10,4 +10,5 @@ module.exports = {
   Mail: require('./mail'),
   DocumentNames: require('./document-names'),
   Payment: require('./payment'),
+  Chat: require('./chat'),
 };

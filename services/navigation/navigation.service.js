@@ -23,18 +23,18 @@ const superAdminNavigationData = [
         'icon': 'insert_chart_outlined',
         'url': '/plans',
     },
-    {
-        'title': 'Send Email',
-        'type': 'item',
-        'icon': 'email',
-        'url': '/email',
-    },
-    {
-        'title': 'Notification/SMS/Chat',
-        'type': 'item',
-        'icon': 'add_alert',
-        'url': '/chat',
-    }
+    // {
+    //     'title': 'Send Email',
+    //     'type': 'item',
+    //     'icon': 'email',
+    //     'url': '/email',
+    // },
+    // {
+    //     'title': 'Notification/SMS/Chat',
+    //     'type': 'item',
+    //     'icon': 'add_alert',
+    //     'url': '/chat',
+    // }
     // ,
     // {
     //     'title': 'Templates',
@@ -82,7 +82,7 @@ const adminNavigationData = [
         'url': '/plans',
     },
     {
-        'title': 'Renew',    
+        'title': 'Renew',   
         'type': 'item',
         'icon': 'monetization_on',
         'url': '/plans/pay',

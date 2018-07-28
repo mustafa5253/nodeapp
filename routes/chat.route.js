@@ -4,7 +4,7 @@ var services = require('../services');
 
 const contacts = [
     {
-        'id'    : '5725a680b3249760ea21de52',
+        'id'    : '5b56078bbceba24b2a602b3a',
         'name'  : 'Alice Freeman',
         'avatar': 'assets/images/avatars/alice.jpg',
         'status': 'online',
@@ -83,7 +83,7 @@ const contacts = [
         'mood'  : 'I can\'t decide if people who wear pajamas in public have given up on life or are living it to the fullest.'
     },
     {
-        'id'    : '5725a680b8d240c011dd224b',
+        'id'    : '5b3898cfc43d54359848079f',
         'name'  : 'Josefina',
         'avatar': 'assets/images/avatars/Josefina.jpg',
         'status': 'online',
@@ -188,72 +188,72 @@ const chats = [
         'id'    : '1725a680b3249760ea21de52',
         'dialog': [
             {
-                'who'    : '5725a680b3249760ea21de52',
+                'who'    : '5b56078bbceba24b2a602b3a',
                 'message': 'Quickly come to the meeting room 1B, we have a big server issue',
                 'time'   : '2017-03-22T08:54:28.299Z'
             },
             {
-                'who'    : '5725a6802d10e277a0f35724',
+                'who'    : '5b38964a48a2393440ff0488',
                 'message': 'I’m having breakfast right now, can’t you wait for 10 minutes?',
                 'time'   : '2017-03-22T08:55:28.299Z'
             },
             {
-                'who'    : '5725a680b3249760ea21de52',
+                'who'    : '5b56078bbceba24b2a602b3a',
                 'message': 'We are losing money! Quick!',
                 'time'   : '2017-03-22T09:00:28.299Z'
             },
             {
-                'who'    : '5725a6802d10e277a0f35724',
+                'who'    : '5b38964a48a2393440ff0488',
                 'message': 'It’s not my money, you know. I will eat my breakfast and then I will come to the meeting room.',
                 'time'   : '2017-03-22T09:02:28.299Z'
             },
             {
-                'who'    : '5725a680b3249760ea21de52',
+                'who'    : '5b56078bbceba24b2a602b3a',
                 'message': 'You are the worst!',
                 'time'   : '2017-03-22T09:05:28.299Z'
             },
             {
-                'who'    : '5725a680b3249760ea21de52',
+                'who'    : '5b56078bbceba24b2a602b3a',
                 'message': 'We are losing money! Quick!',
                 'time'   : '2017-03-22T09:15:28.299Z'
             },
             {
-                'who'    : '5725a6802d10e277a0f35724',
+                'who'    : '5b38964a48a2393440ff0488',
                 'message': 'It’s not my money, you know. I will eat my breakfast and then I will come to the meeting room.',
                 'time'   : '2017-03-22T09:20:28.299Z'
             },
             {
-                'who'    : '5725a680b3249760ea21de52',
+                'who'    : '5b56078bbceba24b2a602b3a',
                 'message': 'You are the worst!',
                 'time'   : '2017-03-22T09:22:28.299Z'
             },
             {
-                'who'    : '5725a680b3249760ea21de52',
+                'who'    : '5b56078bbceba24b2a602b3a',
                 'message': 'We are losing money! Quick!',
                 'time'   : '2017-03-22T09:25:28.299Z'
             },
             {
-                'who'    : '5725a6802d10e277a0f35724',
+                'who'    : '5b38964a48a2393440ff0488',
                 'message': 'It’s not my money, you know. I will eat my breakfast and then I will come to the meeting room.',
                 'time'   : '2017-03-22T09:27:28.299Z'
             },
             {
-                'who'    : '5725a680b3249760ea21de52',
+                'who'    : '5b56078bbceba24b2a602b3a',
                 'message': 'You are the worst!',
                 'time'   : '2017-03-22T09:33:28.299Z'
             },
             {
-                'who'    : '5725a680b3249760ea21de52',
+                'who'    : '5b56078bbceba24b2a602b3a',
                 'message': 'We are losing money! Quick!',
                 'time'   : '2017-03-22T09:35:28.299Z'
             },
             {
-                'who'    : '5725a6802d10e277a0f35724',
+                'who'    : '5b38964a48a2393440ff0488',
                 'message': 'It’s not my money, you know. I will eat my breakfast and then I will come to the meeting room.',
                 'time'   : '2017-03-22T09:45:28.299Z'
             },
             {
-                'who'    : '5725a680b3249760ea21de52',
+                'who'    : '5b56078bbceba24b2a602b3a',
                 'message': 'You are the worst!',
                 'time'   : '2017-03-22T10:00:28.299Z'
             }
@@ -263,17 +263,17 @@ const chats = [
         'id'    : '2725a680b8d240c011dd2243',
         'dialog': [
             {
-                'who'    : '5725a680b8d240c011dd224b',
+                'who'    : '5b3898cfc43d54359848079f',
                 'message': 'Quickly come to the meeting room 1B, we have a big server issue',
                 'time'   : '2017-04-22T01:00:00.299Z'
             },
             {
-                'who'    : '5725a6802d10e277a0f35724',
+                'who'    : '5b38964a48a2393440ff0488',
                 'message': 'I’m having breakfast right now, can’t you wait for 10 minutes?',
                 'time'   : '2017-04-22T01:05:00.299Z'
             },
             {
-                'who'    : '5725a680b8d240c011dd224b',
+                'who'    : '5b3898cfc43d54359848079f',
                 'message': 'We are losing money! Quick!',
                 'time'   : '2017-04-22T01:10:00.299Z'
             }
@@ -283,7 +283,7 @@ const chats = [
         'id'    : '3725a6809413bf8a0a5272b4',
         'dialog': [
             {
-                'who'    : '5725a6809413bf8a0a5272b1',
+                'who'    : '5b12e78520ce8b24c79e8672',
                 'message': 'Quickly come to the meeting room 1B, we have a big server issue',
                 'time'   : '2017-04-22T02:10:00.299Z'
             }
@@ -293,33 +293,33 @@ const chats = [
 
 const user = [
     {
-        'id'      : '5725a6802d10e277a0f35724',
+        'id'      : '5a028ebe4e88510012351744',
         'name'    : 'John Doe',
         'avatar'  : 'assets/images/avatars/profile.jpg',
         'status'  : 'online',
         'mood'    : 'it\'s a status....not your diary...',
         'chatList': [
-            {
-                'id'             : '1725a680b3249760ea21de52',
-                'contactId'      : '5725a680b3249760ea21de52',
-                'name'           : 'Alice Freeman',
-                'unread'         : 4,
-                'lastMessageTime': '2017-06-12T02:10:18.931Z'
-            },
-            {
-                'id'             : '2725a680b8d240c011dd2243',
-                'contactId'      : '5725a680b8d240c011dd224b',
-                'name'           : 'Josefina',
-                'unread'         : null,
-                'lastMessageTime': '2017-02-18T10:30:18.931Z'
-            },
-            {
-                'id'             : '3725a6809413bf8a0a5272b4',
-                'contactId'      : '5725a6809413bf8a0a5272b1',
-                'name'           : 'Velazquez',
-                'unread'         : 2,
-                'lastMessageTime': '2017-03-18T12:30:18.931Z'
-            }
+            // {
+            //     'id'             : '1725a680b3249760ea21de52',
+            //     'contactId'      : '5b56078bbceba24b2a602b3a',
+            //     'name'           : 'Alice Freeman',
+            //     'unread'         : 4,
+            //     'lastMessageTime': '2017-06-12T02:10:18.931Z'
+            // },
+            // {
+            //     'id'             : '2725a680b8d240c011dd2243',
+            //     'contactId'      : '5b3898cfc43d54359848079f',
+            //     'name'           : 'Josefina',
+            //     'unread'         : null,
+            //     'lastMessageTime': '2017-02-18T10:30:18.931Z'
+            // },
+            // {
+            //     'id'             : '3725a6809413bf8a0a5272b4',
+            //     'contactId'      : '5725a6809413bf8a0a5272b1',
+            //     'name'           : 'Velazquez',
+            //     'unread'         : 2,
+            //     'lastMessageTime': '2017-03-18T12:30:18.931Z'
+            // }
         ]
     }
 ];
@@ -340,20 +340,25 @@ router.get('/:path/:id*?', (req, res, next) => {
                 console.log('Return chat by id', id);
                 let chat = chats.find((chat) => chat.id == id);
                 console.log('the found chat is :', chat);
-                res.send(chat);
+                // res.send(chat);
+                services.chat.list(req, res);
+
             } else {
                 console.log('Return all chats');
-                res.send(chats);
+                // res.send(chats);
+                // res.send([]);
+                services.chat.list(req, res);
             }
             
             break;
         case 'contacts':
             console.log('Return chat contacts');
-            res.send(contacts);
+            services.user.getContactListForChat(req, res);
+            // res.send(contacts);
             break;
         case 'user':
             console.log('return chat user');
-            res.send(user);
+            services.chat.getUserWithChatList(req, res);
             break;
         default: 
             console.log('return default case');
@@ -385,12 +390,14 @@ router.post('/chats', (req, res, next) => {
     res.send(body);
 });
 
-router.post('/chats/:id', (req, res, next) => {
-    let body = req.body;
-    console.log('the single chat is :', body);
-    chats.push(body);
-    res.send(chats);
-})
+// router.post('/chats/:id', (req, res, next) => {
+//     let body = req.body;
+//     console.log('the single chat is :', body);
+//     chats.push(body);
+//     res.send(chats);
+// });
+
+router.post('/chats/:id', services.chat.create);
 
 router.post('/user/:id', (req, res, next) => {
     let body = req.body;
