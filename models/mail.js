@@ -7,10 +7,10 @@ var mailSchema = new Schema({
 		avatar: { type: String, trim: true },
 		email: { type: String, trim: true, required: true }
 	},
-	to: { 
-		name: { type: String, trim: true, required: true },
-		email: { type: String, trim: true, required: true }
-	},
+	to: [{
+		name: { type: String, trim: true },
+		email: { type: String, trim: true }
+	}],
 	subject: { type: String, trim: true },
 	message: { type: String, trim: true, required: true },
 	read: Boolean,
@@ -25,10 +25,11 @@ var mailSchema = new Schema({
 		preview: { type: String, trim: true },
 		url: { type: String, trim: true },
 		size: { type: String, trim: true },
+		awsKey: { type: String, trim: true },
 	}],
 	created_by: String,
-	created_at: { type: Date, time: true },
-	updated_at: { type: Date, time: true },
+	created_at: { type: Date, time: true, default: Date.now },
+	updated_at: { type: Date, time: true, default: Date.now },
 });
 
 module.exports = mongoose.model('Mail', mailSchema);

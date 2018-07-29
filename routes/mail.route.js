@@ -494,15 +494,15 @@ router.get('/:path', (req, res, next) => {
             } else {
                 console.log('return all folders');
             }
-            res.send(folders);
+            res.send([folders[0]]);
             break;
         case 'labels':
             console.log('return labels');
-            res.send(labels);
+            res.send([labels[0]]);
             break;
         case 'filters':
             console.log('return all filters');
-            res.send(filters);
+            res.send([filters[0]]);
             break;
         case 'mails':
             if(query && query.folder) {

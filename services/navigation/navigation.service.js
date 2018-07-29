@@ -23,12 +23,13 @@ const superAdminNavigationData = [
         'icon': 'insert_chart_outlined',
         'url': '/plans',
     },
-    // {
-    //     'title': 'Send Email',
-    //     'type': 'item',
-    //     'icon': 'email',
-    //     'url': '/email',
-    // },
+    {
+        'title': 'Send Email',
+        'type': 'item',
+        'icon': 'email',
+        'url': '/email',
+    }
+    // ,
     // {
     //     'title': 'Notification/SMS/Chat',
     //     'type': 'item',

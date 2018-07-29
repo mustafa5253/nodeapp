@@ -86,7 +86,7 @@ router.get('/download/:id', function (req, res) {
     s3.getObject(
         { Bucket: 'office-mirror-dev', Key: req.params.id },
         function (error, data) {
-          if (error != null) {
+          if (error) {
             response.status = 'error';
             response.data = error;
             res.send(response);
