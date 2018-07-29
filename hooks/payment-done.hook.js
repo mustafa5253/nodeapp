@@ -53,6 +53,7 @@ module.exports = {
                         console.log('Yay! Our templated email has been sent :');
                     }
                 });
+
             }
         // }
     }

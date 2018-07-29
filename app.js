@@ -92,6 +92,7 @@ var chat = require('./routes/chat.route');
 var documentNamesRoute = require('./routes/document-names.route');
 var searchRoute = require('./routes/search.route');
 var payment = require('./routes/payment.route');
+var getBalance = require('./routes/get-balance.route');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -136,6 +137,7 @@ app.use('/api/chat', chat);
 app.use('/api/document-names', documentNamesRoute);
 app.use('/api/search', searchRoute);
 app.use('/api/payment', payment);
+app.use('/api/balance', getBalance);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
