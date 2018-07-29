@@ -11,6 +11,8 @@ var rzp = new Razorpay({
     key_id: 'rzp_test_gTxVpenEBcBVCB',
     key_secret: 'nrGDkGKURLe6jqXQazGcdlWS'
 });
+var afterPaymentDoneHook = require('../../hooks/payment-done.hook');
+
 
 module.exports = {
 
@@ -46,6 +48,7 @@ module.exports = {
         		var cb = (response) => {
 					if(response.status === 'success') {
 						// do something with data
+						afterPaymentDoneHook.send3WayAlert(req, response.data);
 						response.data = 'Payment captured successfully.'
 						res.send(response);
 					} else {
