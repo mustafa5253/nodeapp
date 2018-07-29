@@ -154,7 +154,12 @@ module.exports = {
 					}
 				}
 
-				data.password = '12345';
+				// data.password = '12345';
+				data.password = generateRandomPassword();
+
+				if (process.env.ENVIRONMENT === 'development') {
+					console.log('Generated password is :', data.password);
+				}
 
 				if((req.user.user_type === 'admin' || req.user.user_type === 'employee') && (data.user_type === 'employee' || data.user_type == 'customer')) {
 					// Either Admin creating Staff employee and customers or
@@ -332,4 +337,10 @@ function formatContactsForChat(users) {
 	});
 
 	return newUserList;
+}
+
+function generateRandomPassword() {
+
+	// 6 digit random number
+	return Math.floor(100000 + Math.random() * 900000);
 }

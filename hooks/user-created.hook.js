@@ -16,35 +16,39 @@ module.exports = {
 
         var services = require('../services');
 
-        if (user && user.user_type === 'admin') {
+        // if (user && user.user_type === 'admin') {
 
-            // Send SMS using MSG91
-            msg91.send(user.mobile, 'Hello '+ user.first_name +', welcome to Office Manager. Your password is : 12345', (err, response) => {
-                console.log('msg91 error is :', err);
-                console.log('msg91 response is :', response);
-            });
+            if (process.env.ENVIRONMENT === 'production') {
+                // Send SMS using MSG91
+                msg91.send(user.mobile, 'Hello '+ user.first_name +', welcome to Office Mirror. Your password is :'+ user.password, (err, response) => {
+                    console.log('msg91 error is :', err);
+                    console.log('msg91 response is :', response);
+                });
+                
+                // Send Email using sendgrid
+                sgMail.setApiKey(SENDGRID_API_KEY);
 
+                sgMail.setSubstitutionWrappers('{{', '}}'); // Configure the substitution tag wrappers globally
 
-            sgMail.setApiKey(SENDGRID_API_KEY);
-            sgMail.setSubstitutionWrappers('{{', '}}'); // Configure the substitution tag wrappers globally
+                var email = {
+                    from: 'apnodedev@gmail.com',
+                    to: user.email,
+                    subject: 'Welcome to Office Mirror',
+                    templateId: MY_TEMPLATE_ID,
+                    substitutions: {
+                        user_first_name: user.first_name + ' ' + user.last_name,
+                        pwd: user.password
+                    }
+                };
 
-            var email = {
-                from: 'apnodedev@gmail.com',
-                to: user.email,
-                subject: 'Welcome to connect',
-                templateId: MY_TEMPLATE_ID,
-                substitutions: {
-                    user_first_name: user.first_name + ' ' + user.last_name
-                }
-            };
-
-            sgMail.send(email, (err, response) => {
-                if (err) {
-                    console.log('sendgrid err is :', err);
-                } else {
-                    console.log('Yay! Our templated email has been sent :');
-                }
-            });
-        }
+                sgMail.send(email, (err, response) => {
+                    if (err) {
+                        console.log('sendgrid err is :', err);
+                    } else {
+                        console.log('Yay! Our templated email has been sent :');
+                    }
+                });
+            }
+        // }
     }
 }

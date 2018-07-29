@@ -2,7 +2,7 @@ module.exports = function (app, passport) {
 
     // show the home page (will also have our login links)
     app.get('/api/', function (req, res, next) {
-        res.status(200).send({ status: "success", message: "Welcome to the API." });
+        res.status(200).send({ status: "success", message: "Welcome to the "+ process.env.ENVIRONMENT +" API." });
     });
 
     // GET LOGIN
@@ -59,6 +59,7 @@ module.exports = function (app, passport) {
 
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
+
     if (req.isAuthenticated()) {
         return next();
     } else {

@@ -6,8 +6,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var dotenv = require('dotenv');
-var env = dotenv.load();
+// var dotenv = require('dotenv');
+// var env = dotenv.load();
+require('dotenv').config();
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -16,7 +17,7 @@ var cors = require('cors');
 var compression = require('compression');
 const MongoStore = require('connect-mongo')(session);
 
-var databaseUrl = require('./config/database.js')[process.env.NODE_ENV || 'development'];
+var databaseUrl = require('./config/database.js')[process.env.ENVIRONMENT || 'development'];
 // configuration 
 mongoose.connect(databaseUrl, { useMongoClient: true}); // connect to our database
 
@@ -31,6 +32,7 @@ app.io = io;
 var routes = require('./routes/socket.route')(io);
 
 app.use(function(req, res, next) {
+
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Origin', req.headers.origin);
   res.header('Access-Control-Allow-Methods', 'GET,PUT,PATCH,POST,DELETE');
@@ -41,6 +43,7 @@ app.use(function(req, res, next) {
   } else {
     next();
   }
+  
 });
 
 app.use(compression());

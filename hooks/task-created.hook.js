@@ -26,31 +26,31 @@ module.exports = {
         // });
 
         // Send Email using Send grid
-        services.util.getAdminByCompanyId(req.user.company_id, (admin) => {
-            admin = (admin && admin.length && admin.length === 1) ? admin[0] : null;
+        // services.util.getAdminByCompanyId(req.user.company_id, (admin) => {
+        //     admin = (admin && admin.length && admin.length === 1) ? admin[0] : null;
             
-            if (admin) {
-                sgMail.setApiKey(SENDGRID_API_KEY);
-                sgMail.setSubstitutionWrappers('{{', '}}'); // Configure the substitution tag wrappers globally
+        //     if (admin) {
+        //         sgMail.setApiKey(SENDGRID_API_KEY);
+        //         sgMail.setSubstitutionWrappers('{{', '}}'); // Configure the substitution tag wrappers globally
 
-                var email = {
-                    from: 'apnodedev@gmail.com',
-                    to: 'apmeena786@gmail.com',
-                    subject: 'Welcome to connect',
-                    templateId: MY_TEMPLATE_ID,
-                    substitutions: {
-                        user_first_name: admin.first_name + ' ' + admin.last_name
-                    }
-                };
+        //         var email = {
+        //             from: 'apnodedev@gmail.com',
+        //             to: 'apmeena786@gmail.com',
+        //             subject: 'Welcome to connect',
+        //             templateId: MY_TEMPLATE_ID,
+        //             substitutions: {
+        //                 user_first_name: admin.first_name + ' ' + admin.last_name
+        //             }
+        //         };
 
-                sgMail.send(email, (err, response) => {
-                    if (err) {
-                        console.log('sendgrid err is :', err);
-                    } else {
-                        console.log('Yay! Our templated email has been sent :');
-                    }
-                });
-            }
-        });
+        //         sgMail.send(email, (err, response) => {
+        //             if (err) {
+        //                 console.log('sendgrid err is :', err);
+        //             } else {
+        //                 console.log('Yay! Our templated email has been sent :');
+        //             }
+        //         });
+        //     }
+        // });
     }
 }
