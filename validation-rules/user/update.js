@@ -28,7 +28,7 @@ module.exports = {
       "type": "string",
       "minLength": 5
     },
-    "user_type": { "enum": ["admin","employee","customer"] },
+    "user_type": { "enum": ["admin","employee","customer", "super_admin"] },
     "plan_id": {
       "type": "string",
       "minLength": 24,
@@ -64,6 +64,12 @@ module.exports = {
     "address": { "type": [ "null", "string" ] },
     "key_person": { "type": [ "null", "string" ] },
     "status": { "type": [ "null", "string" ] },
+    "sequence_number": { "type": [ "null", "string" ] },
+
+
+    "chatList": {
+      "type": "array"
+    }
   },
-  "additionalProperties": false
+  "additionalProperties": true
 };

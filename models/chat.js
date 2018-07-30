@@ -10,8 +10,7 @@ var ChatSchema = new Schema({
 		time: { type: Date, time: true, default: Date.now }
 	}],
 
-	created_at: { type: Date, time: true, default: Date.now },
-	updated_at: { type: Date, time: true, default: Date.now }
+	created_at: { type: Date, time: true, default: Date.now }
 });
 
 module.exports = mongoose.model('Chat', ChatSchema);

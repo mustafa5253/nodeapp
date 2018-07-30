@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var userModel = require('./user');
-var planModel = require('./plan');
+var customerCounterSchema = require('./customer-sequence');
 
 var CompanySchema = new Schema({
 	name: { type: String, trim: true, required: true },
@@ -28,6 +27,19 @@ var CompanySchema = new Schema({
 	created_by: String,
 	created_at: { type: Date, time: true },
 	updated_at: { type: Date, time: true },
+});
+
+
+CompanySchema.post('save', function(company) {
+
+    customerCounterSchema.create({ company_id: company._id, seq: 1 }, function(error, seqence) {
+        
+        if(error) {
+            return;
+        }
+
+    });
+
 });
 
 module.exports = mongoose.model('Company', CompanySchema);

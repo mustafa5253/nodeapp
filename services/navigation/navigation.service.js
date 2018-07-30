@@ -28,14 +28,13 @@ const superAdminNavigationData = [
         'type': 'item',
         'icon': 'email',
         'url': '/email',
+    },
+    {
+        'title': 'Notification/SMS/Chat',
+        'type': 'item',
+        'icon': 'add_alert',
+        'url': '/chat',
     }
-    // ,
-    // {
-    //     'title': 'Notification/SMS/Chat',
-    //     'type': 'item',
-    //     'icon': 'add_alert',
-    //     'url': '/chat',
-    // }
     // ,
     // {
     //     'title': 'Templates',

@@ -97,7 +97,7 @@ module.exports = {
 			if(response.status === 'success') {
 				// do something with data
 				response.data = formatContactsForChat(response.data);
-				res.send(response);
+				res.send(response.data);
 			} else {
 				// do something with error
 				res.send(response);
@@ -241,6 +241,64 @@ module.exports = {
         	}
         });
     },
+
+     /**
+     * update chat list
+     */
+    updateChatList: (req, res) => {
+
+    	let response = {};
+
+    	let id = req.params.id;
+        let data = req.body;
+
+        let cb = (output) => {
+			if(output.status === 'success'){
+				// do something with data
+				res.send(output);
+			} else {
+				// do something with error
+				res.send(output);
+			}
+		}
+
+		if (data && data.chatList) {
+			dcl.update(id, { chatList: data.chatList }, 'User', cb);
+        }
+
+    },
+
+    getUserWithChatList: (req, res) => {
+
+		var user_id = req.user._id;
+
+		console.log('the idddddddddd is :', user_id);
+
+		var cb = (response) => {
+			if (response.status === 'success') {
+				// do something with data
+				var newData 	= JSON.parse(JSON.stringify(response.data));
+				newData.id 		= response.data._id;
+				newData.name 	= response.data.first_name + ' ' + response.data.last_name;
+				newData.mood 	= 'This is a mood message...';
+				newData.status 	= 'online';
+				newData.avatar 	= 'assets/images/avatars/alice.jpg';
+
+				console.log('the responded data isssssssss :', newData);
+
+				res.send({
+					status: 'success',
+					data: newData
+				});
+
+			} else {
+				// do something with error
+				res.send(response);
+			}
+		}
+
+		dcl.getById(user_id, 'User', cb);
+	},
 
     changePassword: (req, res) => {
 

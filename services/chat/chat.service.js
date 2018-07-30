@@ -48,40 +48,30 @@ module.exports = {
 		dcl.getById(id, 'Chat', cb);
 	},
 
-	getUserWithChatList: (req, res) => {
+	/**
+     * getChatById
+     */
+	getChatById: (req, res) => {
 
-		var user_id = req.user.id;
-
-		console.log('the user_id is :', user_id);
+		var chat_id = req.params.id;
 
 		var cb = (response) => {
 			if (response.status === 'success') {
 				// do something with data
+				if (response.data && response.data.length) {
+					
+					response.data = response.data[0];
 
-				var userWithChatList = {};
+				}
 
-				userWithChatList = JSON.parse(JSON.stringify(req.user));
-
-				response.data = modifyChat(response.data);
-
-				userWithChatList.chatList = response.data;
-
-				userWithChatList.status = 'online';
-
-				res.send({
-					status: 'success',
-					data: userWithChatList
-				});
-
+				res.send(response);
 			} else {
 				// do something with error
 				res.send(response);
 			}
 		}
 
-		const condition = { 'dialog': { $elemMatch: { who: user_id }}};
-
-		dcl.getAllWhere('Chat', condition, null, cb);
+		dcl.getAllWhere('Chat', { id : chat_id }, null, cb);
 	},
 
     /**

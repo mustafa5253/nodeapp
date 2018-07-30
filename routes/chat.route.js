@@ -299,20 +299,21 @@ const user = [
         'status'  : 'online',
         'mood'    : 'it\'s a status....not your diary...',
         'chatList': [
-            // {
-            //     'id'             : '1725a680b3249760ea21de52',
-            //     'contactId'      : '5b56078bbceba24b2a602b3a',
-            //     'name'           : 'Alice Freeman',
-            //     'unread'         : 4,
-            //     'lastMessageTime': '2017-06-12T02:10:18.931Z'
-            // },
-            // {
-            //     'id'             : '2725a680b8d240c011dd2243',
-            //     'contactId'      : '5b3898cfc43d54359848079f',
-            //     'name'           : 'Josefina',
-            //     'unread'         : null,
-            //     'lastMessageTime': '2017-02-18T10:30:18.931Z'
-            // },
+            {
+                'id'             : '1725a680b3249760ea21de52',
+                'contactId'      : '5b56078bbceba24b2a602b3a',
+                'name'           : 'Alice Freeman',
+                'unread'         : 4,
+                'lastMessageTime': '2017-06-12T02:10:18.931Z'
+            },
+            {
+                'id'             : '2725a680b8d240c011dd2243',
+                'contactId'      : '5b3898cfc43d54359848079f',
+                'name'           : 'Josefina',
+                'unread'         : null,
+                'lastMessageTime': '2017-02-18T10:30:18.931Z'
+            }
+            // ,
             // {
             //     'id'             : '3725a6809413bf8a0a5272b4',
             //     'contactId'      : '5725a6809413bf8a0a5272b1',
@@ -337,17 +338,17 @@ router.get('/:path/:id*?', (req, res, next) => {
     switch(path) {
         case 'chats':
             if (id) {
-                console.log('Return chat by id', id);
-                let chat = chats.find((chat) => chat.id == id);
-                console.log('the found chat is :', chat);
+                // console.log('Return chat by id', id);
+                // let chat = chats.find((chat) => chat.id == id);
+                // console.log('the found chat is :', chat);
                 // res.send(chat);
-                services.chat.list(req, res);
+                services.chat.getChatById(req, res);
 
             } else {
                 console.log('Return all chats');
-                // res.send(chats);
+                res.send(chats);
                 // res.send([]);
-                services.chat.list(req, res);
+                // services.chat.list(req, res);
             }
             
             break;
@@ -358,7 +359,8 @@ router.get('/:path/:id*?', (req, res, next) => {
             break;
         case 'user':
             console.log('return chat user');
-            services.chat.getUserWithChatList(req, res);
+            services.user.getUserWithChatList(req, res);
+            // res.send(user);
             break;
         default: 
             console.log('return default case');
@@ -373,22 +375,12 @@ router.get('/:path/:id*?', (req, res, next) => {
 /*
  * POST
  */
-// router.post('/', services.chat.create);
-router.post('/chats', (req, res, next) => {
-    let body = req.body;
-    console.log('All chats are :', body);
-    console.log("+++++++++++++++++++++++++++++++");
-    console.log("+++++++++++++++++++++++++++++++");
-    console.log("+++++++++++++++++++++++++++++++");
-    console.log("+++++++++++++++++++++++++++++++");
-    console.log("+++++++++++++++++++++++++++++++");
-    console.log("+++++++++++++++++++++++++++++++");
-    console.log("+++++++++++++++++++++++++++++++");
-    console.log("+++++++++++++++++++++++++++++++");
-    console.log("+++++++++++++++++++++++++++++++");
-    chats.push(body);
-    res.send(body);
-});
+router.post('/chats', services.chat.create);
+// router.post('/chats', (req, res, next) => {
+//     let body = req.body;
+//     chats.push(body);
+//     res.send(body);
+// });
 
 // router.post('/chats/:id', (req, res, next) => {
 //     let body = req.body;
@@ -399,12 +391,14 @@ router.post('/chats', (req, res, next) => {
 
 router.post('/chats/:id', services.chat.create);
 
-router.post('/user/:id', (req, res, next) => {
-    let body = req.body;
-    user.push(body);
-    console.log('the user body is :', body);
-    res.send(body);
-});
+router.post('/user/:id', services.user.update);
+
+// router.post('/user/:id', (req, res, next) => {
+//     let body = req.body;
+//     user.push(body);
+//     console.log('the user body is :', body);
+//     res.send(body);
+// });
 
 /*
  * PUT
