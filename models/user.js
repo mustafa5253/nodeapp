@@ -78,9 +78,14 @@ userSchema.pre('save', function(next) {
 	            return next(error);
 	        }
 
-	        user.sequence_number = counter.seq;
+	        if (counter) {
+
+	        	user.sequence_number = counter.seq;
+
+	        }
 
 	        next();
+
 	    });
 
     } else {
