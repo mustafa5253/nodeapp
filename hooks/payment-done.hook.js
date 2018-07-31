@@ -25,10 +25,21 @@ module.exports = {
 
                 const message = 'Thank you '+ req.user.first_name +', we have received your payment of INR: '+ payment_amount;
 
-                msg91.send(req.user.mobile, message, (err, response) => {
-                    console.log('msg91 error is :', err);
-                    console.log('msg91 response is :', response);
-                });
+                
+                try {
+
+                    if (req.user && req.user.mobile && message) {
+
+                        msg91.send(req.user.mobile, message, (err, response) => {
+                            console.log('msg91 error is :', err);
+                            console.log('msg91 response is :', response);
+                        });
+                    }
+
+                } catch(e) {
+
+                }
+              
                 
                 // Send Email using sendgrid
                 sgMail.setApiKey(SENDGRID_API_KEY);
@@ -46,13 +57,22 @@ module.exports = {
                     }
                 };
 
-                sgMail.send(email, (err, response) => {
-                    if (err) {
-                        console.log('sendgrid err is :', err);
-                    } else {
-                        console.log('Yay! Our templated email has been sent :');
+                try {
+
+                    if (email && email.from && email.to) {
+                        
+                        sgMail.send(email, (err, response) => {
+                            if (err) {
+                                console.log('sendgrid err is :', err);
+                            } else {
+                                console.log('Yay! Our templated email has been sent :');
+                            }
+                        });
                     }
-                });
+
+                } catch(e) {
+
+                }
 
             }
         // }

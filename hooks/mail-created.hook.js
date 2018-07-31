@@ -37,12 +37,21 @@ module.exports = {
             }
         };
 
-        sgMail.send(email, (err, response) => {
-            if (err) {
-                console.log('sendgrid err is :', err);
-            } else {
-                console.log('Yay! Our templated email has been sent :');
+        try {
+
+            if (email && email.from && email.to) {
+                
+                sgMail.send(email, (err, response) => {
+                    if (err) {
+                        console.log('sendgrid err is :', err);
+                    } else {
+                        console.log('Yay! Our templated email has been sent :');
+                    }
+                });
             }
-        });
+
+        } catch(e) {
+
+        }
     }
 }

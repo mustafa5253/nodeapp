@@ -16,14 +16,21 @@ module.exports = {
 
         var services = require('../services');
 
-        // if (user && user.user_type === 'admin') {
-
             if (process.env.ENVIRONMENT === 'production') {
-                // Send SMS using MSG91
-                msg91.send(user.mobile, 'Hello '+ user.first_name +', welcome to Office Mirror. Your password is :'+ user.password, (err, response) => {
-                    console.log('msg91 error is :', err);
-                    console.log('msg91 response is :', response);
-                });
+
+                try {
+                    // Send SMS using MSG91
+                    if (user.mobile && user.first_name && user.password) {
+                        msg91.send(user.mobile, 'Hello '+ user.first_name +', welcome to Office Mirror. Your password is :'+ user.password, (err, response) => {
+                            console.log('msg91 error is :', err);
+                            console.log('msg91 response is :', response);
+                        });
+                    }
+                    
+                } catch(e) {
+
+                }
+                
                 
                 // Send Email using sendgrid
                 sgMail.setApiKey(SENDGRID_API_KEY);
@@ -41,14 +48,22 @@ module.exports = {
                     }
                 };
 
-                sgMail.send(email, (err, response) => {
-                    if (err) {
-                        console.log('sendgrid err is :', err);
-                    } else {
-                        console.log('Yay! Our templated email has been sent :');
+                try {
+
+                    if (email && email.from && email.to) {
+                        sgMail.send(email, (err, response) => {
+                            if (err) {
+                                console.log('sendgrid err is :', err);
+                            } else {
+                                console.log('Yay! Our templated email has been sent :');
+                            }
+                        });
                     }
-                });
-            }
-        // }
+                    
+                } catch(e) {
+
+                }
+                
+        }
     }
 }
