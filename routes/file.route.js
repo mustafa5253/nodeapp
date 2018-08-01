@@ -12,6 +12,8 @@ let aws = require('aws-sdk');
 let multer  = require('multer');
 var multerS3 = require('multer-s3');
 
+var isAdminGuard = require('../authorization/is-admin-guard');
+
 aws.config.update({
     secretAccessKey: 'uReN/fajmxmOyNZIKW6E4RIPOY9G3gaxuLd/b3M7',
     accessKeyId: 'AKIAJARREX7UOZ7ZXDGQ',
@@ -129,6 +131,12 @@ router.delete('/:id', (req, res) => {
         });
     });
 });
+
+
+/*
+ * GET USER FILES
+ */
+router.get('/user-docs/:id', isAdminGuard, services.document.getUserDocs);
 
 
 module.exports = router;

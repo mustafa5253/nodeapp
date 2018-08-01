@@ -51,6 +51,25 @@ module.exports = {
 		dcl.getById(id, 'Document', cb);
 	},
 
+	getUserDocs: (req, res) => {
+
+		var id = req.params.id;
+
+		var cb = (response) => {
+			if (response.status === 'success') {
+				// do something with data
+				res.send(response);
+			} else {
+				// do something with error
+				res.send(response);
+			}
+		}
+
+		var condition = { created_by: id };
+
+		dcl.getAllWhere('Document', condition, null, cb);
+	},
+
     /**
      * create
      */
