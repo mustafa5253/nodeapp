@@ -86,6 +86,12 @@ const adminNavigationData = [
         'type': 'item',
         'icon': 'monetization_on',
         'url': '/plans/pay',
+    },
+    {
+        'title': 'Notification/SMS/Chat',
+        'type': 'item',
+        'icon': 'add_alert',
+        'url': '/chat',
     }
 ];
 

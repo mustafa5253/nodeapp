@@ -7,17 +7,22 @@ module.exports = {
     sendEmail: (req, email) => {
 
         const toMailList = [];
-        const attachmentList = [];
+        // const attachmentList = [];
 
         email.to.forEach((toMail) => {
             toMailList.push(toMail.email);
         });
 
-        email.attachments.forEach((attachment) => {
-            attachmentList.push({
-                name: attachment.fileName,
-                content: attachment.preview
-            });
+        let attachmentsHtml = '<br><br><b> Download your attachments: </b><br> ';
+
+        email.attachments.forEach((attachment, indx) => {
+
+            attachmentsHtml = attachmentsHtml + (indx + 1) +'. <a title="'+ attachment.fileName +'" target="_blank" href="'+ attachment.url +'">Download</a>';
+
+            // attachmentList.push({
+            //     name: attachment.fileName,
+            //     content: attachment.preview
+            // });
         });
 
         var services = require('../services');
@@ -33,7 +38,7 @@ module.exports = {
             subject: email.subject,
             templateId: MY_TEMPLATE_ID,
             substitutions: {
-                body: email.message
+                body: email.message + attachmentsHtml
             }
         };
 

@@ -346,9 +346,9 @@ router.get('/:path/:id*?', (req, res, next) => {
 
             } else {
                 console.log('Return all chats');
-                res.send(chats);
+                // res.send(chats);
                 // res.send([]);
-                // services.chat.list(req, res);
+                services.chat.list(req, res);
             }
             
             break;
