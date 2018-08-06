@@ -130,6 +130,49 @@ module.exports = {
         dcl.getById(id, 'User', cb);
     },
 
+    checkIfEmailOrMobileAvailable: (req, res) => {
+
+        var param = req.params;
+
+        var condition = {};
+
+        if (param) {
+
+        	if (param.mobileNo) {
+        		condition = { mobile: param.mobileNo };
+        	} else if (param.emailId) {
+        		condition = { email: param.emailId };
+        	} else {
+        		return res.status(400).json({ status: 'error', data: 'Invalid request.'});
+        	}
+
+        } else {
+        	return res.status(400).json({ status: 'error', data: 'Invalid request.'});
+        }
+
+        var cb = (response) => {
+			if(response.status === 'success') {
+
+				// do something with data
+				if (response.data) {
+
+				 	res.send({ status: 'success', data: { available: false } });
+
+				} else {
+
+				 	res.send({ status: 'success', data: { available: true } });
+				 	
+				}
+
+			} else {
+				// do something with error
+				res.send(response);
+			}
+		}
+       
+        dcl.getOneWhere('User', condition, cb);
+    },
+
     /**
      * create
      */

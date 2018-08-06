@@ -67,6 +67,23 @@ module.exports = {
         });
     },
 
+    getOneWhere: (modelName, conditionObj, callbackFn) => {
+
+        let response = {};
+
+        models[modelName].findOne(conditionObj, (err, row) => {
+            if (err) {
+                response.status = 'error';
+                response.data = err;
+            } else {
+                response.status = 'success';
+                response.data = row;
+            }
+
+            callbackFn(response);
+        });
+    },
+
     getAllAndPopulate: (modelName, modelToPopulateName, callbackFn) => {
 
         let response = {};

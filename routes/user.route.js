@@ -54,5 +54,15 @@ router.put('/:id', services.user.update);
  */
 router.delete('/:id', services.user.remove);
 
+/*
+ * Check if this mobile number is available
+ */
+router.get('/mobile/:mobileNo', services.user.checkIfEmailOrMobileAvailable);
+
+/*
+ * Check if this email id is available
+ */
+router.get('/email/:emailId', services.user.checkIfEmailOrMobileAvailable);
+
 
 module.exports = router;
